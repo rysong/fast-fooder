@@ -76,7 +76,7 @@ image = Image.new(
   name: "Mcdonalds fries", 
   url: "https://cdn.modernfarmer.com/wp-content/uploads/2014/11/fries.jpeg", 
   user_id: 1,  
-  restaurant_id: 1
+  review_id: 1
   )
 image.save
 
@@ -84,7 +84,7 @@ image = Image.new(
   name: "Italian Beef", 
   url: "https://media-cdn.tripadvisor.com/media/photo-s/0e/5d/a0/07/portillos-italian-beef.jpg", 
   user_id: 1,  
-  restaurant_id: 2
+  review_id: 2
   )
 image.save 
 

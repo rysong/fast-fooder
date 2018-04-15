@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20180412004943) do
   create_table "images", force: :cascade do |t|
     t.string "name"
     t.string "url"
-    t.integer "restaurant_id"
+    t.integer "review_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20180412004943) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.string "logo"
+    t.string "primary_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

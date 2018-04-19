@@ -4,10 +4,17 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Fast Fooder!"
+      message: "Welcome to Fast Fooder!",
+      restaurants: []
     };
   },
-  created: function() {},
+  created: function() {
+    axios.get("/v1/restaurants").then(
+      function(response) {
+        this.restaurants = response.data;
+      }.bind(this)
+    );
+  },
   methods: {},
   computed: {}
 };

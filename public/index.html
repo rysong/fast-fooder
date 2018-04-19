@@ -35,6 +35,20 @@
 
     <h1>{{ message }}</h1>
 
+    <div class="row">
+        <!-- restaurants go here -->
+        <div class="col-md-4" v-for="restaurant in restaurants">
+          <div class="card mb-5">
+            <img class="card-img-top" v-bind:src="restaurant.logo" alt="Card image cap">
+              <div class="card-body">
+               <h4 class="card-title">{{ restaurant.name}}</h4>
+               <p class="card-text address">{{ restaurant.address }}</p>
+               <a class="btn btn-primary">More info page</a>
+              </div>
+          </div>
+        </div>          
+      </div>
+
   </div>
 </template>
 

@@ -762,3 +762,39 @@ Processing by UserTokenController#create as HTML
 Completed 201 Created in 359ms (Views: 0.5ms | ActiveRecord: 115.8ms)
 
 
+Started GET "/v1/restaurants" for 127.0.0.1 at 2018-04-18 21:17:50 -0500
+Processing by V1::RestaurantsController#index as HTML
+  [1m[36mRestaurant Load (15.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+Completed 200 OK in 55ms (Views: 0.5ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/v1/restaurants" for 127.0.0.1 at 2018-04-18 21:18:23 -0500
+Processing by V1::RestaurantsController#index as HTML
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/v1/restaurants" for 127.0.0.1 at 2018-04-18 21:18:55 -0500
+Processing by V1::RestaurantsController#index as HTML
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/v1/restaurants" for 127.0.0.1 at 2018-04-18 21:18:57 -0500
+Processing by V1::RestaurantsController#index as HTML
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/v1/restaurants" for 127.0.0.1 at 2018-04-18 21:19:53 -0500
+Processing by V1::RestaurantsController#index as HTML
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/v1/restaurants" for 127.0.0.1 at 2018-04-18 21:20:10 -0500
+Processing by V1::RestaurantsController#index as HTML
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.3ms)
+
+

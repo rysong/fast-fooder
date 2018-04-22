@@ -125,13 +125,32 @@ var ReviewsNewPage = {
   }
 };
 
+var RestaurantsShowPage = {
+  template: "#restaurants-show-page",
+  data: function() {
+    return {
+      restaurant: {}
+    };
+  },
+  created: function() {
+    axios.get("v1/restaurants/" + this.$route.params.id).then(
+      function(response) {
+        this.restaurant = response.data;
+      }.bind(this)
+    );
+  },
+  methods: {},
+  computed: {}
+};
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
-    { path: "/reviews/new", component: ReviewsNewPage }
+    { path: "/reviews/new", component: ReviewsNewPage },
+    { path: "/restaurants/:id", component: RestaurantsShowPage }
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

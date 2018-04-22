@@ -94,12 +94,44 @@ var LogoutPage = {
   }
 };
 
+var ReviewsNewPage = {
+  template: "#reviews-new-page",
+  data: function() {
+    return {
+      value: "",
+      text: "",
+      restaurantId: "",
+      errors: []
+    };
+  },
+  methods: {
+    submit: function() {
+      var params = {
+        value: this.value,
+        text: this.text,
+        restaurant_id: this.restaurantId
+      };
+      axios
+        .post("/v1/reviews", params)
+        .then(function(response) {
+          router.push("/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    }
+  }
+};
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
-    { path: "/logout", component: LogoutPage }
+    { path: "/logout", component: LogoutPage },
+    { path: "/reviews/new", component: ReviewsNewPage }
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

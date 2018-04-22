@@ -9,7 +9,7 @@ class V1::ReviewsController < ApplicationController
     review = Review.new(
       value: params[:value],
       text: params[:text], 
-      user_id: params[:user_id],
+      user_id: current_user.id, 
       restaurant_id: params[:restaurant_id]
       )
 

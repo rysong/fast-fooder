@@ -20,7 +20,6 @@
       <a href="/#/signup">Signup</a>
       <a href="/#/login">Login</a>
       <a href="/#/logout">Logout</a>
-      <a href="/#/reviews/new">New Review</a>
       <router-view></router-view>
     </div>
     <!-- Optional JavaScript -->
@@ -40,7 +39,7 @@
         <!-- restaurants go here -->
         <div class="col-md-4" v-for="restaurant in restaurants">
           <div class="card mb-5">
-            <img class="card-img-top" v-bind:src="restaurant.logo" alt="Card image cap">
+            <img class="card-img-top" v-bind:src="restaurant.logo" alt="Card image cap" height="300" width="200">
               <div class="card-body">
                <h4 class="card-title">{{ restaurant.name}}</h4>
                <p class="card-text address">{{ restaurant.address }}</p>
@@ -135,12 +134,13 @@
   <div class="vue-component">
     <h1>{{ restaurant.name }}</h1>
     <img v-bind:src="restaurant.primary_image" height="500" width="500">
-<!--     <img class="card-img-top" v-bind:src="restaurant.logo" alt="Card image cap"> -->
     <p>Address: {{ restaurant.address }}</p>
     <p>Reviews: </p>
     <ul>
         <li v-for="review in reviews">{{ review.value + ": " + review.text  }}</li>
     </ul>
     <a href="/#/">Back to all restaurants</a>
+    <a href="/#/reviews/new">New Review</a>
+
   </div>  
 </template>

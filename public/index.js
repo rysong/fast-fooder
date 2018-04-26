@@ -100,7 +100,6 @@ var ReviewsNewPage = {
     return {
       value: "",
       text: "",
-      restaurantId: "",
       errors: []
     };
   },
@@ -109,12 +108,13 @@ var ReviewsNewPage = {
       var params = {
         value: this.value,
         text: this.text,
-        restaurant_id: this.restaurantId
+        restaurant_id: this.$route.params.id
       };
       axios
         .post("/v1/reviews", params)
         .then(function(response) {
-          router.push("/");
+          console.log(response);
+          router.push("/restaurants/" + params.restaurant_id);
         })
         .catch(
           function(error) {
@@ -151,7 +151,7 @@ var router = new VueRouter({
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
-    { path: "/reviews/new", component: ReviewsNewPage },
+    { path: "/reviews/new/:id", component: ReviewsNewPage },
     { path: "/restaurants/:id", component: RestaurantsShowPage }
   ],
   scrollBehavior: function(to, from, savedPosition) {

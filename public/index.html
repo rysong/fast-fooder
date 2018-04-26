@@ -134,8 +134,13 @@
 <template id="restaurants-show-page">
   <div class="vue-component">
     <h1>{{ restaurant.name }}</h1>
-    <p>{{ restaurant.address }}</p>
-    <p>{{ restaurant.reviews }}</p>
+    <img v-bind:src="restaurant.primary_image" height="500" width="500">
+<!--     <img class="card-img-top" v-bind:src="restaurant.logo" alt="Card image cap"> -->
+    <p>Address: {{ restaurant.address }}</p>
+    <p>Reviews: </p>
+    <ul>
+        <li v-for="review in reviews">{{ review.value + ": " + review.text  }}</li>
+    </ul>
     <a href="/#/">Back to all restaurants</a>
   </div>  
 </template>

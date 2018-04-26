@@ -129,13 +129,15 @@ var RestaurantsShowPage = {
   template: "#restaurants-show-page",
   data: function() {
     return {
-      restaurant: {}
+      restaurant: {},
+      reviews: []
     };
   },
   created: function() {
     axios.get("v1/restaurants/" + this.$route.params.id).then(
       function(response) {
         this.restaurant = response.data;
+        this.reviews = response.data.reviews;
       }.bind(this)
     );
   },

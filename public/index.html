@@ -34,10 +34,11 @@
   <div class="vue-component">
 
     <h1>{{ message }}</h1>
+    <input type="text" v-model="nameFilter" placeholder="Search by name">
 
     <div class="row">
         <!-- restaurants go here -->
-        <div class="col-md-4" v-for="restaurant in restaurants">
+        <div class="col-md-4" v-for="restaurant in restaurants" v-if="isValidRestaurant(restaurant)">
           <div class="card mb-5">
             <img class="card-img-top" v-bind:src="restaurant.logo" alt="Card image cap" height="300" width="200">
               <div class="card-body">

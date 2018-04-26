@@ -5,7 +5,8 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Fast Fooder!",
-      restaurants: []
+      restaurants: [],
+      nameFilter: ""
     };
   },
   created: function() {
@@ -15,7 +16,11 @@ var HomePage = {
       }.bind(this)
     );
   },
-  methods: {},
+  methods: {
+    isValidRestaurant: function(restaurant) {
+      return restaurant.name.includes(this.nameFilter);
+    }
+  },
   computed: {}
 };
 

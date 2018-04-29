@@ -18,7 +18,9 @@ var HomePage = {
   },
   methods: {
     isValidRestaurant: function(restaurant) {
-      return restaurant.name.includes(this.nameFilter);
+      var lowerRestaurantName = restaurant.name.toLowerCase();
+      var lowerNameFilter = this.nameFilter.toLowerCase();
+      return lowerRestaurantName.includes(lowerNameFilter);
     }
   },
   computed: {}

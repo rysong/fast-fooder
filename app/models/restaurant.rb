@@ -10,7 +10,8 @@ class Restaurant < ApplicationRecord
       address: address,
       logo: logo, 
       primary_image: primary_image,
-      reviews: reviews
+      reviews: reviews,
+      meals: meals
     }
   end   
 end

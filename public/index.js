@@ -137,7 +137,8 @@ var RestaurantsShowPage = {
   data: function() {
     return {
       restaurant: {},
-      reviews: []
+      reviews: [],
+      meals: []
     };
   },
   created: function() {
@@ -145,6 +146,7 @@ var RestaurantsShowPage = {
       function(response) {
         this.restaurant = response.data;
         this.reviews = response.data.reviews;
+        this.meals = response.data.meals;
       }.bind(this)
     );
   },

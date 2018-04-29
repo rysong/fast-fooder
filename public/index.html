@@ -136,7 +136,10 @@
     <ul>
         <li v-for="review in reviews">{{ review.value + ": " + review.text  }}</li>
     </ul>
-    
+     <p>Top Meals: </p>
+    <ul>
+        <li v-for="meal in meals">{{ meal.description  }}</li>
+    </ul>
     <a v-bind:href="/#/" class ="btn btn-primary">Back to all restaurants</a>
     <a v-bind:href=" '#/reviews/new/' + restaurant.id " class="btn btn-primary">New Review</a>
 

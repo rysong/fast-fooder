@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
     post "/reviews" => "reviews#create"
     get "/reviews" => "reviews#index" 
+
+    post "/user_meals" => "user_meals#create"
   end 
 
 end

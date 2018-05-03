@@ -132,7 +132,7 @@
     <h1>{{ restaurant.name }}</h1>
     <img v-bind:src="restaurant.primary_image" height="500" width="500">
     <p>Address: {{ restaurant.address }}</p>
-    <p>Reviews: </p>
+    <p>Overall Reviews: </p>
     <ul>
         <li v-for="review in reviews">{{ review.value + ": " + review.text  }}</li>
     </ul>

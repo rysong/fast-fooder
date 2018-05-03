@@ -138,7 +138,10 @@ var RestaurantsShowPage = {
     return {
       restaurant: {},
       reviews: [],
-      meals: []
+      meals: [],
+      errors: [],
+      mealRanking: "",
+      mealReviewText: ""
     };
   },
   created: function() {
@@ -150,7 +153,27 @@ var RestaurantsShowPage = {
       }.bind(this)
     );
   },
-  methods: {},
+  methods: {
+    submit: function(meal) {
+      var params = {
+        meal_id: meal.id,
+        ranking: this.mealRanking,
+        text: this.mealReviewText,
+        restaurant_id: this.$route.params.id
+      };
+      axios
+        .post("/v1/user_meals", params)
+        .then(function(response) {
+          console.log(response);
+          router.push("/restaurants/" + restaurant_id);
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    }
+  },
   computed: {}
 };
 

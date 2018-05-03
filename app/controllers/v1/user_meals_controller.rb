@@ -1,16 +1,16 @@
 class V1::UserMealsController < ApplicationController
   def create
     user_meal = UserMeal.new(
-      ranking: params[:raking],
+      ranking: params[:ranking],
       text: params[:text], 
       user_id: current_user.id, 
       meal_id: params[:meal_id]
       )
 
-    if review.save 
-      render json: {message: "Review successfully created!"}, status: :created 
+    if user_meal.save 
+      render json: {message: "Meal Review successfully created!"}, status: :created 
     else
-      render json: {errors: user.errors.full_messages}, status: :bad_request
+      render json: {errors: user_meal.errors.full_messages}, status: :bad_request
     end
   end 
 end

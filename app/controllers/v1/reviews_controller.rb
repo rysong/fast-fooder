@@ -16,7 +16,7 @@ class V1::ReviewsController < ApplicationController
     if review.save 
       render json: {message: "Review successfully created!"}, status: :created 
     else
-      render json: {errors: user.errors.full_messages}, status: :bad_request
+      render json: {errors: review.errors.full_messages}, status: :bad_request
     end
   end 
 end

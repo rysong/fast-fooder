@@ -1,4 +1,4 @@
-/* global Vue, VueRouter, axios */
+/* global Vue, VueRouter, axios, heroMap */
 
 var HomePage = {
   template: "#home-page",
@@ -16,6 +16,25 @@ var HomePage = {
       }.bind(this)
     );
   },
+  mounted: function() {
+    var optimizedDatabaseLoading = 0;
+    var _latitude = 40.7344458;
+    var _longitude = -73.86704922;
+    var element = "map-homepage";
+    var markerTarget = "modal"; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
+    var sidebarResultTarget = "modal"; // use "sidebar", "modal" or "new_page" - defines the action after click on marker
+    var showMarkerLabels = false; // next to every marker will be a bubble with title
+    var mapDefaultZoom = 14; // default zoom
+    heroMap(
+      _latitude,
+      _longitude,
+      element,
+      markerTarget,
+      sidebarResultTarget,
+      showMarkerLabels,
+      mapDefaultZoom
+    );
+  },
   methods: {
     isValidRestaurant: function(restaurant) {
       var lowerRestaurantName = restaurant.name.toLowerCase();
@@ -24,6 +43,10 @@ var HomePage = {
     }
   },
   computed: {}
+};
+
+var TestPage = {
+  template: "#test"
 };
 
 var SignupPage = {
@@ -180,6 +203,7 @@ var RestaurantsShowPage = {
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
+    { path: "/test", component: TestPage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },

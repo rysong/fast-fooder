@@ -165,7 +165,7 @@ var RestaurantsShowPage = {
         .post("/v1/user_meals", params)
         .then(function(response) {
           console.log(response);
-          router.push("/restaurants/" + restaurant_id);
+          router.push("/restaurants/" + this.restaurant_id);
         })
         .catch(
           function(error) {

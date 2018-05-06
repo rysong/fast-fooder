@@ -1,4 +1,4 @@
-/* global Vue, VueRouter, axios, heroMap */
+/* global Vue, VueRouter, axios, heroMap rating simpleMap*/
 
 var HomePage = {
   template: "#home-page",
@@ -175,6 +175,13 @@ var RestaurantsShowPage = {
         this.meals = response.data.meals;
       }.bind(this)
     );
+  },
+  mounted: function() {
+    rating(".visitor-rating");
+    var _latitude = 40.7344458;
+    var _longitude = -73.86704922;
+    var element = "map-detail";
+    simpleMap(_latitude, _longitude, element);
   },
   methods: {
     submit: function(meal) {

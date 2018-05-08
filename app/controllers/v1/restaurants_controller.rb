@@ -16,7 +16,10 @@ class V1::RestaurantsController < ApplicationController
     restaurant = Restaurant.find_by(id: restaurant_id)
     search = restaurant.name + restaurant.address
     response = Unirest.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{search}&key=#{ENV['MAPS_API_KEY']}")
-    render json: response.body["results"][0] 
+    google_id = response.body["results"][0]["place_id"] 
+
+    response = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{google_id}&key=#{ENV['MAPS_API_KEY']}")
+    render json: response.body["result"]
 
   end 
   

@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'unirest', '~> 1.1.2'
+
+gem 'figaro', '~> 1.1.1'
+
 #Knock is an authentication solution for Rails API-only application based on JSON Web Tokens
 gem 'knock', '~> 2.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

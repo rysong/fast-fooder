@@ -230,5 +230,10 @@ var app = new Vue({
     if (jwt) {
       axios.defaults.headers.common["Authorization"] = jwt;
     }
+  },
+  watch: {
+    $route: function() {
+      window.location.reload();
+    }
   }
 });

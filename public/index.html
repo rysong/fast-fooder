@@ -1352,7 +1352,7 @@
                                         <span class="stars"></span>
                                         <span class="reviews">6</span>
                                     </div>
-                                    <span class="date">{{ review.created_at }}</span>
+                                    <span class="date">{{ review.relative_time_description }}</span>
                                 </figure>
                                 <p>{{ review.text }}</p>
                             </div>
@@ -1486,16 +1486,17 @@
                                 </div>
                                 <hr>
                                 <address>
-                                    <figure><i class="fa fa-map-marker"></i>3858 Marion Street<br>Morrisville, VT 05661 </figure>
+                                    <figure><i class="fa fa-map-marker"></i>{{ restaurant.address }} </figure>
                                     <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
-                                    <figure><i class="fa fa-phone"></i>316-436-8619</figure>
-                                    <figure><i class="fa fa-globe"></i><a href="#">www.markysrestaurant.com</a></figure>
+                                    <figure><i class="fa fa-phone"></i>{{ googleInfo.formatted_phone_number }}</figure>
+                                    <figure><i class="fa fa-globe"></i><a href="#">{{ googleInfo.website }}</a></figure>
                                 </address>
                             </div>
                         </section>
                         <section>
                             <h2>Opening Hours</h2>
                             <dl>
+                                <!-- {{ googleInfo.opening_hours.weekday_text[0] }} -->
                                 <dt>Monday</dt>
                                 <dd>08:00am - 11:00pm</dd>
                                 <dt>Tuesday</dt>

@@ -164,15 +164,22 @@ var RestaurantsShowPage = {
       meals: [],
       errors: [],
       mealRanking: "",
-      mealReviewText: ""
+      mealReviewText: "",
+      googleInfo: []
     };
   },
   created: function() {
     axios.get("v1/restaurants/" + this.$route.params.id).then(
       function(response) {
         this.restaurant = response.data;
-        this.reviews = response.data.reviews;
+        // this.reviews = response.data.reviews; get reviews from database
         this.meals = response.data.meals;
+      }.bind(this)
+    );
+    axios.get("v1/googlerestaurants/" + this.$route.params.id).then(
+      function(response) {
+        this.googleInfo = response.data;
+        this.reviews = response.data.reviews;
       }.bind(this)
     );
   },

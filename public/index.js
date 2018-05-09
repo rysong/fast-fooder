@@ -182,6 +182,13 @@ var RestaurantsShowPage = {
         this.reviews = response.data.reviews;
       }.bind(this)
     );
+    this.meals = this.meals.sort(
+      function(meal1, meal2) {
+        var mealUpvotes1 = meal1["upvotes"];
+        var mealUpvotes2 = meal2["upvotes"];
+        return mealUpvotes2.localeCompare(mealUpvotes1);
+      }.bind(this)
+    );
   },
   mounted: function() {
     rating(".visitor-rating");
@@ -204,6 +211,27 @@ var RestaurantsShowPage = {
           console.log(response);
           router.push("/restaurants/" + this.restaurant_id);
         })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    },
+    upvote: function(meal) {
+      var params = {
+        meal_id: meal.id,
+        restaurant_id: this.$route.params.id
+      };
+      axios
+        .post("/v1/meals/" + params.meal_id)
+        .then(function(response) {
+          console.log(response);
+          router.push("/restaurants/" + params.restaurant_id);
+        })
+        // .patch("/v1/meals/" + params.meal_id)
+        // .then(function(response) {
+        //   router.push("/restaurants/1");
+        // })
         .catch(
           function(error) {
             this.errors = error.response.data.errors;

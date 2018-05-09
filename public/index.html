@@ -1286,9 +1286,9 @@
             <section class="page-title pull-left">
                 <h1>{{ restaurant.name }}</h1>
                 <h3>{{ restaurant.address }}</h3>
-                <div class="rating-passive" data-rating="4">
+                <div class="rating-passive" v-bind:data-rating=4> <!-- v-bind:data-rating="googleInfo.rating"> -->
                     <span class="stars"></span>
-                    <span class="reviews">6</span>
+                    <span class="reviews">{{reviews.length}}</span>
                 </div>
             </section>
             <!--end page-title-->
@@ -1299,7 +1299,7 @@
             <div class="gallery detail">
                 <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
                     <div class="image">
-                        <div class="bg-transfer"><img v-bind:src="restaurant.primary_image" alt=""></div>
+                        <div class="bg-transfer"><img v-bind:src="restaurant.primary_image" alt="test"></div>
                     </div>
                     <div class="image">
                         <div class="bg-transfer"><img src="assets/img/items/30.jpg" alt=""></div>
@@ -1329,15 +1329,15 @@
                         </p>
                     </section>
                     <section>
-                        <h2>Features</h2>
+                        <h2>Other Info:</h2>
                         <ul class="tags">
                             <li>Wi-Fi</li>
+                            <li>Desserts</li>
                             <li>Parking</li>
                             <li>TV</li>
                             <li>Alcohol</li>
                             <li>Vegetarian</li>
-                            <li>Take-out</li>
-                            <li>Balcony</li>
+                            <!-- <li>Take-out</li> -->
                         </ul>
                     </section>
                     <section>
@@ -1380,7 +1380,8 @@
                     <section>
                         <h2>Top Meals</h2>
                         <div v-for="meal in meals">
-                            <p>{{ meal.description }} </p>
+                            <p>{{ meal.description + " (upvotes:" + meal.upvotes + ")"}}</p>
+                            <button class="btn btn-primary" v-on:click="upvote(meal)">Upvote</button>
                             <li v-for="user_meal in meal.user_meals"> {{"Rank-" + user_meal.ranking + " from " + user_meal.user.name + ": " + user_meal.text  }} </li>
 
                             <div class="image">
@@ -1489,7 +1490,7 @@
                                     <figure><i class="fa fa-map-marker"></i>{{ restaurant.address }} </figure>
                                     <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
                                     <figure><i class="fa fa-phone"></i>{{ googleInfo.formatted_phone_number }}</figure>
-                                    <figure><i class="fa fa-globe"></i><a href="#">{{ googleInfo.website }}</a></figure>
+                                    <figure><i class="fa fa-globe"></i><a v-bind:href="googleInfo.website">{{restaurant.name}} Website</a> </figure>
                                 </address>
                             </div>
                         </section>

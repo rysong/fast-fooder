@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get "/reviews" => "reviews#index" 
 
     post "/user_meals" => "user_meals#create"
+
+    post "/meals/:id" => "meals#upvote"
   end 
 
 end

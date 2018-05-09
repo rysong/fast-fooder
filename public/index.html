@@ -500,6 +500,7 @@
             <div class="container">
                 <div class="section-title">
                     <div class="center">
+
                         <h2>Browse Our Listings</h2>
                     </div>
                 </div>
@@ -1286,6 +1287,7 @@
             <section class="page-title pull-left">
                 <h1>{{ restaurant.name }}</h1>
                 <h3>{{ restaurant.address }}</h3>
+                <h3>Average Speed of Service: {{ restaurant.speed_of_service }} minutes</h3>
                 <div class="rating-passive" v-bind:data-rating=4> <!-- v-bind:data-rating="googleInfo.rating"> -->
                     <span class="stars"></span>
                     <span class="reviews">{{reviews.length}}</span>

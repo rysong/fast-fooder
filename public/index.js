@@ -165,7 +165,7 @@ var RestaurantsShowPage = {
       errors: [],
       mealRanking: "",
       mealReviewText: "",
-      googleInfo: []
+      googleInfo: {}
     };
   },
   created: function() {
@@ -174,19 +174,21 @@ var RestaurantsShowPage = {
         this.restaurant = response.data;
         // this.reviews = response.data.reviews; get reviews from database
         this.meals = response.data.meals;
+        Vue.nextTick(
+          function() {
+            console.log("data is ready");
+            console.log(
+              $(".owl-carousel"),
+              $(".owl-carousel").data("owlCarousel")
+            );
+          }.bind(this)
+        );
       }.bind(this)
     );
     axios.get("v1/googlerestaurants/" + this.$route.params.id).then(
       function(response) {
         this.googleInfo = response.data;
         this.reviews = response.data.reviews;
-      }.bind(this)
-    );
-    this.meals = this.meals.sort(
-      function(meal1, meal2) {
-        var mealUpvotes1 = meal1["upvotes"];
-        var mealUpvotes2 = meal2["upvotes"];
-        return mealUpvotes2.localeCompare(mealUpvotes1);
       }.bind(this)
     );
   },
@@ -218,20 +220,12 @@ var RestaurantsShowPage = {
         );
     },
     upvote: function(meal) {
-      var params = {
-        meal_id: meal.id,
-        restaurant_id: this.$route.params.id
-      };
       axios
-        .post("/v1/meals/" + params.meal_id)
+        .post("/v1/meals/" + meal.id)
         .then(function(response) {
           console.log(response);
-          router.push("/restaurants/" + params.restaurant_id);
+          meal.upvotes += 1;
         })
-        // .patch("/v1/meals/" + params.meal_id)
-        // .then(function(response) {
-        //   router.push("/restaurants/1");
-        // })
         .catch(
           function(error) {
             this.errors = error.response.data.errors;
@@ -239,7 +233,15 @@ var RestaurantsShowPage = {
         );
     }
   },
-  computed: {}
+  computed: {
+    topMeals: function() {
+      return this.meals
+        .sort(function(meal1, meal2) {
+          return meal2.upvotes - meal1.upvotes;
+        })
+        .slice(0, 3);
+    }
+  }
 };
 
 var router = new VueRouter({

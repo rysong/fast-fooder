@@ -1288,9 +1288,9 @@
                 <h1>{{ restaurant.name }}</h1>
                 <h3>{{ restaurant.address }}</h3>
                 <h3>Average Speed of Service: {{ restaurant.speed_of_service }} minutes</h3>
-                <div class="rating-passive" v-bind:data-rating=4> <!-- v-bind:data-rating="googleInfo.rating"> -->
+                <div class="rating-passive" v-bind:data-rating=4><!-- v-bind:data-rating="googleInfo.rating" need to fix theme to show this rating-->
                     <span class="stars"></span>
-                    <span class="reviews">{{reviews.length}}</span>
+                    <!-- <span class="reviews">{{reviews.length}}</span> shows number of reviews for restaurant--> 
                 </div>
             </section>
             <!--end page-title-->
@@ -1352,7 +1352,6 @@
                                 <figure>
                                     <div class="rating-passive" data-rating="4">
                                         <span class="stars"></span>
-                                        <span class="reviews">6</span>
                                     </div>
                                     <span class="date">{{ review.relative_time_description }}</span>
                                 </figure>
@@ -1381,7 +1380,7 @@
                     </section>
                     <section>
                         <h2>Top Meals</h2>
-                        <div v-for="meal in meals">
+                        <div v-for="meal in topMeals">
                             <p>{{ meal.description + " (upvotes:" + meal.upvotes + ")"}}</p>
                             <button class="btn btn-primary" v-on:click="upvote(meal)">Upvote</button>
                             <li v-for="user_meal in meal.user_meals"> {{"Rank-" + user_meal.ranking + " from " + user_meal.user.name + ": " + user_meal.text  }} </li>

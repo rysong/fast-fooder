@@ -1,7 +1,6 @@
 class V1::UserMealsController < ApplicationController
   def create
     user_meal = UserMeal.new(
-      ranking: params[:ranking],
       text: params[:text], 
       user_id: current_user.id, 
       meal_id: params[:meal_id]

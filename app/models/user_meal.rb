@@ -5,7 +5,6 @@ class UserMeal < ApplicationRecord
   def as_json
     {
       id: id,
-      ranking: ranking,
       text: text,
       user: user
     }

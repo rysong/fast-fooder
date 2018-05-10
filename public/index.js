@@ -163,7 +163,6 @@ var RestaurantsShowPage = {
       reviews: [],
       meals: [],
       errors: [],
-      mealRanking: "",
       mealReviewText: "",
       googleInfo: {}
     };
@@ -203,7 +202,6 @@ var RestaurantsShowPage = {
     submit: function(meal) {
       var params = {
         meal_id: meal.id,
-        ranking: this.mealRanking,
         text: this.mealReviewText,
         restaurant_id: this.$route.params.id
       };
@@ -223,7 +221,6 @@ var RestaurantsShowPage = {
       axios
         .post("/v1/meals/" + meal.id)
         .then(function(response) {
-          console.log(response);
           meal.upvotes += 1;
         })
         .catch(

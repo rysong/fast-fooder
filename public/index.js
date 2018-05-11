@@ -199,6 +199,7 @@ var RestaurantsShowPage = {
     );
   },
   mounted: function() {},
+
   methods: {
     submit: function(meal) {
       var params = {

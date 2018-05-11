@@ -7,7 +7,7 @@ class V1::UserMealsController < ApplicationController
       )
 
     if user_meal.save 
-      render json: {message: "Meal Review successfully created!"}, status: :created 
+      render json: user_meal.as_json
     else
       render json: {errors: user_meal.errors.full_messages}, status: :bad_request
     end

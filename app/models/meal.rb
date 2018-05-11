@@ -7,7 +7,8 @@ class Meal < ApplicationRecord
       id: id,
       description: description,
       upvotes: upvotes,
-      user_meals: user_meals.as_json
+      user_meals: user_meals.as_json,
+      new_user_meal_text: ""
     }
   end   
 end

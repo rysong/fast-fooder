@@ -163,7 +163,6 @@ var RestaurantsShowPage = {
       reviews: [],
       meals: [],
       errors: [],
-      mealReviewText: "",
       googleInfo: {}
     };
   },
@@ -173,6 +172,7 @@ var RestaurantsShowPage = {
         this.restaurant = response.data;
         // this.reviews = response.data.reviews; get reviews from database
         this.meals = response.data.meals;
+
         Vue.nextTick(
           function() {
             console.log("data is ready");
@@ -184,6 +184,7 @@ var RestaurantsShowPage = {
         );
       }.bind(this)
     );
+
     axios.get("v1/googlerestaurants/" + this.$route.params.id).then(
       function(response) {
         this.googleInfo = response.data;
@@ -202,15 +203,17 @@ var RestaurantsShowPage = {
     submit: function(meal) {
       var params = {
         meal_id: meal.id,
-        text: this.mealReviewText,
+        text: meal.new_user_meal_text,
         restaurant_id: this.$route.params.id
       };
       axios
         .post("/v1/user_meals", params)
-        .then(function(response) {
-          console.log(response);
-          router.push("/restaurants/" + this.restaurant_id);
-        })
+        .then(
+          function(response) {
+            meal.user_meals.push(response.data);
+            meal.new_user_meal_text = "";
+          }.bind(this)
+        )
         .catch(
           function(error) {
             this.errors = error.response.data.errors;

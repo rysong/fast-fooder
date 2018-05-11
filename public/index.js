@@ -6,7 +6,9 @@ var HomePage = {
     return {
       message: "Welcome to Fast Fooder!",
       restaurants: [],
-      nameFilter: ""
+      nameFilter: "",
+      randomRestaurant: {},
+      randomMeal: ""
     };
   },
   created: function() {
@@ -40,6 +42,16 @@ var HomePage = {
       var lowerRestaurantName = restaurant.name.toLowerCase();
       var lowerNameFilter = this.nameFilter.toLowerCase();
       return lowerRestaurantName.includes(lowerNameFilter);
+    },
+    randomSelector: function() {
+      var randomRestaurantIndex = Math.floor(
+        Math.random() * this.restaurants.length
+      );
+      this.randomRestaurant = this.restaurants[randomRestaurantIndex];
+
+      var mealOptions = this.randomRestaurant.meals;
+      var randomMealIndex = Math.floor(Math.random() * mealOptions.length);
+      this.randomMeal = mealOptions[randomMealIndex];
     }
   },
   computed: {}

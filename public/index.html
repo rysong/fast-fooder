@@ -30,7 +30,7 @@
         <header id="page-header">
             <nav>
                 <div class="left">
-                    <a href="index.html" class="brand"><img src="assets/img/logo.png" alt=""></a>
+                    <a href="index.html" class="brand"><img alt="">Fast Fooder</a>
                 </div>
                 <!--end left-->
                 <div class="right">
@@ -433,7 +433,7 @@
                             <div class="additional-info">
                                 <div class="rating-passive" v-bind:data-rating="4">
                                     <span class="stars"></span>
-                                    <span class="reviews">6</span>
+                                    
                                 </div>
                                 <div class="controls-more">
                                     <ul>
@@ -489,6 +489,12 @@
                 <!--end row-->
                 <div class="center">
                     <a href="listing.html" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">View all listings</a>
+                </div>
+                <br>    
+                <div class="center">
+                    <button class="btn btn-primary btn-light-frame btn-rounded btn-framed" v-on:click="randomSelector()">I'm Indecisive</button>
+                    <div> {{ randomRestaurant.name }}</div>
+                    <div>{{ randomMeal.description }}</div>
                 </div>
             <!--end center-->
             </div>

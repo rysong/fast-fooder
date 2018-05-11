@@ -189,16 +189,16 @@ var RestaurantsShowPage = {
       function(response) {
         this.googleInfo = response.data;
         this.reviews = response.data.reviews;
+
+        rating(".visitor-rating");
+        var _latitude = this.googleInfo.geometry.location.lat;
+        var _longitude = this.googleInfo.geometry.location.lng;
+        var element = "map-detail";
+        simpleMap(_latitude, _longitude, element);
       }.bind(this)
     );
   },
-  mounted: function() {
-    rating(".visitor-rating");
-    var _latitude = 40.7344458;
-    var _longitude = -73.86704922;
-    var element = "map-detail";
-    simpleMap(_latitude, _longitude, element);
-  },
+  mounted: function() {},
   methods: {
     submit: function(meal) {
       var params = {

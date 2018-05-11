@@ -431,7 +431,7 @@
                                 <!--end image-->
                             </a>
                             <div class="additional-info">
-                                <div class="rating-passive" data-rating="4">
+                                <div class="rating-passive" v-bind:data-rating="googleInfo.rating">
                                     <span class="stars"></span>
                                     <span class="reviews">6</span>
                                 </div>
@@ -1492,7 +1492,6 @@
                             <div class="content">
                                 <div class="vertical-aligned-elements">
                                     <div class="element"><img src="assets/img/logo-2.png" alt=""></div>
-                                    <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>
                                 </div>
                                 <hr>
                                 <address>

@@ -1,4 +1,4 @@
-/* global Vue, VueRouter, axios, heroMap rating simpleMap, google*/
+/* global Vue, VueRouter, axios, heroMap rating simpleMap, google, bgTransfer*/
 
 var HomePage = {
   template: "#home-page",
@@ -10,15 +10,17 @@ var HomePage = {
       nameFilter: "",
       randomRestaurant: {},
       randomMeal: "",
-      googleInfo: {},
-      map: null,
-      marker: null
+      map: null
     };
   },
   created: function() {
     axios.get("/v1/restaurants").then(
       function(response) {
         this.restaurants = response.data;
+
+        Vue.nextTick(function() {
+          bgTransfer();
+        });
 
         var map = this.map;
         var geocoder = new google.maps.Geocoder();
@@ -126,28 +128,6 @@ var HomePage = {
         }
       ]
     });
-
-    // var marker = new google.maps.Marker({
-    //   position: this.restaurantCoordinates[0],
-    //   map: map,
-    //   animation: google.maps.Animation.DROP,
-    //   title: "Mcdonald's"
-    // });
-
-    // this.restaurantCoordinates.forEach(function(restaurantCoordinate) {
-    //   var marker = new google.maps.Marker({
-    //     position: restaurantCoordinate.lat,
-    //     map: map
-    //   });
-
-    //   var infowindow = new google.maps.InfoWindow({
-    //     content: "This is Mcds"
-    //   });
-
-    //   marker.addListener("click", function() {
-    //     infowindow.open(map, marker);
-    //   });
-    // });
   },
 
   methods: {
@@ -299,15 +279,9 @@ var RestaurantsShowPage = {
         // this.reviews = response.data.reviews; get reviews from database
         this.meals = response.data.meals;
 
-        Vue.nextTick(
-          function() {
-            console.log("data is ready");
-            console.log(
-              $(".owl-carousel"),
-              $(".owl-carousel").data("owlCarousel")
-            );
-          }.bind(this)
-        );
+        Vue.nextTick(function() {
+          bgTransfer();
+        });
       }.bind(this)
     );
 

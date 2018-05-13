@@ -1,4 +1,4 @@
-/* global Vue, VueRouter, axios, heroMap rating simpleMap*/
+/* global Vue, VueRouter, axios, heroMap rating simpleMap, google*/
 
 var HomePage = {
   template: "#home-page",
@@ -6,37 +6,150 @@ var HomePage = {
     return {
       message: "Welcome to Fast Fooder!",
       restaurants: [],
+      restaurantCoordinates: [],
       nameFilter: "",
       randomRestaurant: {},
-      randomMeal: ""
+      randomMeal: "",
+      googleInfo: {},
+      map: null,
+      marker: null
     };
   },
   created: function() {
     axios.get("/v1/restaurants").then(
       function(response) {
         this.restaurants = response.data;
+
+        var map = this.map;
+        var geocoder = new google.maps.Geocoder();
+        this.restaurants.forEach(
+          function(restaurant) {
+            geocoder.geocode({ address: restaurant.address }, function(
+              results,
+              status
+            ) {
+              console.log("geocode", restaurant.address, results, status);
+              if (status === "OK") {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+                });
+
+                var infowindow = new google.maps.InfoWindow({
+                  content: restaurant.name
+                });
+
+                marker.addListener("click", function() {
+                  infowindow.open(map, marker);
+                });
+              } else {
+                alert(
+                  "Geocode was not successful for the following reason: " +
+                    status
+                );
+              }
+            });
+          }.bind(this)
+        );
       }.bind(this)
     );
   },
   mounted: function() {
     var optimizedDatabaseLoading = 0;
-    var _latitude = 40.7344458;
-    var _longitude = -73.86704922;
+    var _latitude = 41.892156;
+    var _longitude = -87.634794;
     var element = "map-homepage";
     var markerTarget = "modal"; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
     var sidebarResultTarget = "modal"; // use "sidebar", "modal" or "new_page" - defines the action after click on marker
     var showMarkerLabels = false; // next to every marker will be a bubble with title
     var mapDefaultZoom = 14; // default zoom
-    heroMap(
-      _latitude,
-      _longitude,
-      element,
-      markerTarget,
-      sidebarResultTarget,
-      showMarkerLabels,
-      mapDefaultZoom
-    );
+    // heroMap(
+    //   _latitude,
+    //   _longitude,
+    //   element,
+    //   markerTarget,
+    //   sidebarResultTarget,
+    //   showMarkerLabels,
+    //   mapDefaultZoom
+    // );
+
+    this.map = new google.maps.Map(document.getElementById(element), {
+      center: { lat: _latitude, lng: _longitude },
+      zoom: 14,
+      mapTypeId: "roadmap",
+      styles: [
+        {
+          featureType: "administrative",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#c6c6c6" }]
+        },
+        {
+          featureType: "landscape",
+          elementType: "all",
+          stylers: [{ color: "#f2f2f2" }]
+        },
+        {
+          featureType: "poi",
+          elementType: "all",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "road",
+          elementType: "all",
+          stylers: [{ saturation: -100 }, { lightness: 45 }]
+        },
+        {
+          featureType: "road.highway",
+          elementType: "all",
+          stylers: [{ visibility: "simplified" }]
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry.fill",
+          stylers: [{ color: "#ffffff" }]
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "labels.icon",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "transit",
+          elementType: "all",
+          stylers: [{ visibility: "off" }]
+        },
+        {
+          featureType: "water",
+          elementType: "all",
+          stylers: [{ color: "#dde6e8" }, { visibility: "on" }]
+        }
+      ]
+    });
+
+    // var marker = new google.maps.Marker({
+    //   position: this.restaurantCoordinates[0],
+    //   map: map,
+    //   animation: google.maps.Animation.DROP,
+    //   title: "Mcdonald's"
+    // });
+
+    // this.restaurantCoordinates.forEach(function(restaurantCoordinate) {
+    //   var marker = new google.maps.Marker({
+    //     position: restaurantCoordinate.lat,
+    //     map: map
+    //   });
+
+    //   var infowindow = new google.maps.InfoWindow({
+    //     content: "This is Mcds"
+    //   });
+
+    //   marker.addListener("click", function() {
+    //     infowindow.open(map, marker);
+    //   });
+    // });
   },
+
   methods: {
     isValidRestaurant: function(restaurant) {
       var lowerRestaurantName = restaurant.name.toLowerCase();

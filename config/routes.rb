@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "/restaurants" => "restaurants#index" 
     get "/restaurants/:id" => "restaurants#show"
     get "/googlerestaurants/:id" => "restaurants#google"
+    get "/wikirestaurants/:id" => "restaurants#wiki"
 
 
     post "/reviews" => "reviews#create"

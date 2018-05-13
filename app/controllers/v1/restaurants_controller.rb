@@ -20,7 +20,15 @@ class V1::RestaurantsController < ApplicationController
 
     response = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{google_id}&key=#{ENV['MAPS_API_KEY']}")
     render json: response.body["result"]
-
   end 
+
+  def wiki
+    restaurant_id = params["id"]
+    restaurant = Restaurant.find_by(id: restaurant_id)
+    search = restaurant.name
+    response = Unirest.get("https://en.wikipedia.org/api/rest_v1/page/summary/#{search}")
+    render json: response.body
+  end 
+
   
 end

@@ -175,6 +175,7 @@ var RestaurantsShowPage = {
       reviews: [],
       meals: [],
       errors: [],
+      wikiInfo: {},
       googleInfo: {}
     };
   },
@@ -207,6 +208,12 @@ var RestaurantsShowPage = {
         var _longitude = this.googleInfo.geometry.location.lng;
         var element = "map-detail";
         simpleMap(_latitude, _longitude, element);
+      }.bind(this)
+    );
+
+    axios.get("v1/wikirestaurants/" + this.$route.params.id).then(
+      function(response) {
+        this.wikiInfo = response.data;
       }.bind(this)
     );
   },

@@ -332,11 +332,11 @@
                     <div class="tse-scrollable">
                         <div class="tse-content">
                             <div class="section-title">
-                                <h2>Search Results<span class="results-number"><!-- {{ restaurants.length }} --></span></h2>
+                                <h2>Search Results<span class="results-number">{{ filteredRestaurants.length }}</span></h2>
                             </div>
                             <!--end section-title-->
                             <div class="results-content" style="height: 400px">
-                                <div v-for="restaurant in restaurants" v-if="isValidRestaurant(restaurant)">
+                                <div v-for="restaurant in filteredRestaurants">
                                     <a v-bind:href=" '/#/restaurants/' + restaurant.id ">{{ restaurant.name }}</a>
                                 </div> 
                             </div>
@@ -358,7 +358,7 @@
                     <div class="section-title">
                         <div class="center">
                             <h2>Suggested Places</h2>
-                            <h3 class="subtitle">Fusce eu mollis dui, varius convallis mauris. Nam dictum id</h3>
+                            <button >Sort by Speed</button>
                         </div>
                     </div>
                     <!--end section-title-->
@@ -1260,17 +1260,17 @@
                         <div class="bg-transfer"><img v-bind:src="restaurant.primary_image" alt="test"></div>
                     </div>
                     <div class="image">
-                        <div class="bg-transfer"><img src="" alt=""></div>
+                        <div class="bg-transfer"><img v-bind:src="restaurant.images[0].url" alt=""></div>
                     </div>
                     <div class="image">
-                        <div class="bg-transfer"><img src="assets/img/items/31.jpg" alt=""></div>
+                        <div class="bg-transfer"><img v-bind:src="restaurant.images[1].url" alt=""></div>
                     </div>
                     <div class="image">
-                        <div class="bg-transfer"><img src="assets/img/items/21.jpg" alt=""></div>
+                        <div class="bg-transfer"><img v-bind:src="restaurant.images[2].url" alt=""></div>
                     </div>
-                    <div class="image">
+                   <!--  <div class="image">
                         <div class="bg-transfer"><img src="assets/img/items/23.jpg" alt=""></div>
-                    </div>
+                    </div> -->
                 </div>
                 <!--end owl-carousel-->
             </div>

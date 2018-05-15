@@ -45,6 +45,7 @@ var HomePage = {
                 marker.addListener("click", function() {
                   infowindow.open(map, marker);
                 });
+                restaurant.marker = marker;
               } else {
                 alert(
                   "Geocode was not successful for the following reason: " +
@@ -146,8 +147,25 @@ var HomePage = {
       var randomMealIndex = Math.floor(Math.random() * mealOptions.length);
       this.randomMeal = mealOptions[randomMealIndex];
     }
+    // sortedRestaurants: function() {
+    //   return this.restaurants.sort(function(restaurant1, restaurant2) {
+    //     return restaurant1.speed_of_service - restaurant2.speed_of_service;
+    //   });
+    // }
   },
-  computed: {}
+  computed: {
+    filteredRestaurants: function() {
+      return this.restaurants.filter(
+        function(restaurant) {
+          var lowerRestaurantName = restaurant.name.toLowerCase();
+          var lowerNameFilter = this.nameFilter.toLowerCase();
+          var visible = lowerRestaurantName.includes(lowerNameFilter);
+          // restaurant.marker.setVisible(visible);
+          return visible;
+        }.bind(this)
+      );
+    }
+  }
 };
 
 var TestPage = {

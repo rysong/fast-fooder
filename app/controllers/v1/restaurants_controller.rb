@@ -19,7 +19,20 @@ class V1::RestaurantsController < ApplicationController
     google_id = response.body["results"][0]["place_id"] 
 
     response = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{google_id}&key=#{ENV['MAPS_API_KEY']}")
-    render json: response.body["result"]
+
+    # #creating array of photos from google api 
+    # photo_source_array = response.body["result"]["photos"]
+    # target_photos = []
+    # index = 0 
+    # 5.times do 
+    #   photo_reference = photo_source_array[index]["photo_reference"]
+    #   target_photo = Unirest.get("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{ENV['MAPS_API_KEY']}") 
+    #   target_photos << target_photo.body
+    #   index += 1 
+    # end 
+    
+    render json: {main: response.body["result"]} 
+
   end 
 
   def wiki

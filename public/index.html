@@ -319,64 +319,10 @@
                             <h2>Search</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="keyword" placeholder="Enter keyword">
-                        </div>
-                        <!--end form-group-->
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <select class="form-control selectpicker" name="city">
-                                        <option value="">Chicago</option>
-                                        <option value="1">New York</option>
-                                        <option value="2">Washington</option>
-                                        <option value="3">London</option>
-                                        <option value="4">Paris</option>
-                                    </select>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-6-->
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <select class="form-control selectpicker" name="category">
-                                        <option value="">Category</option>
-                                        <option value="restaurant">Restaurant</option>
-                                        <option value="car rental">Car Rental</option>
-                                        <option value="relax">Relax</option>
-                                        <option value="sport">Sport</option>
-                                        <option value="wellness">Wellness</option>
-                                    </select>
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-6-->
-                        </div>
-                        <!--end row-->
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control date-picker" name="min-price" placeholder="Event Date">
-                                </div>
-                                <!--end form-group-->
-                            </div>
-                            <!--end col-md-6-->
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <div class="ui-slider" id="price-slider" data-value-min="10" data-value-max="400" data-value-type="price" data-currency="$" data-currency-placement="before">
-                                        <div class="values clearfix">
-                                            <input class="value-min" name="value-min[]" readonly>
-                                            <input class="value-max" name="value-max[]" readonly>
-                                        </div>
-                                        <div class="element"></div>
-                                    </div>
-                                    <!--end price-slider-->
-                                </div>
-                            </div>
-                            <!--end col-md-6-->
-                        </div>
-                        <!--end row-->
-                        <div class="form-group">
-                            <button type="submit" data-ajax-response="map" data-ajax-data-file="assets/external/data_2.php" data-ajax-auto-zoom="1" class="btn btn-primary pull-right"><i class="fa fa-search"></i></button>
+                            <input type="text" class="form-control" name="keyword" placeholder="Enter Restaurant Name" v-model="nameFilter" list="restaurant-names">
+                            <datalist id="restaurant-names">
+                                <option v-for="restaurant in restaurants">{{ restaurant.name }}</option>
+                            </datalist>
                         </div>
                         <!--end form-group-->
                     </form>
@@ -386,10 +332,14 @@
                     <div class="tse-scrollable">
                         <div class="tse-content">
                             <div class="section-title">
-                                <h2>Search Results<span class="results-number"></span></h2>
+                                <h2>Search Results<span class="results-number"><!-- {{ restaurants.length }} --></span></h2>
                             </div>
                             <!--end section-title-->
-                            <div class="results-content"></div>
+                            <div class="results-content" style="height: 400px">
+                                <div v-for="restaurant in restaurants" v-if="isValidRestaurant(restaurant)">
+                                    <a v-bind:href=" '/#/restaurants/' + restaurant.id ">{{ restaurant.name }}</a>
+                                </div> 
+                            </div>
                             <!--end results-content-->
                         </div>
                         <!--end tse-content-->
@@ -1310,7 +1260,7 @@
                         <div class="bg-transfer"><img v-bind:src="restaurant.primary_image" alt="test"></div>
                     </div>
                     <div class="image">
-                        <div class="bg-transfer"><img src="assets/img/items/30.jpg" alt=""></div>
+                        <div class="bg-transfer"><img src="" alt=""></div>
                     </div>
                     <div class="image">
                         <div class="bg-transfer"><img src="assets/img/items/31.jpg" alt=""></div>
@@ -1352,7 +1302,7 @@
                         <h2>Reviews</h2>
                         <div class="review" v-for="review in reviews">
                             <div class="image">
-                                <div class="bg-transfer"><img src="assets/img/person-02.jpg" alt=""></div>
+                                <div class="bg-transfer"><img v-bind:src="review.profile_photo_url" alt=""></div>
                             </div>
                             <div class="description">
                                 <figure>

@@ -269,7 +269,8 @@ var RestaurantsShowPage = {
       meals: [],
       errors: [],
       wikiInfo: {},
-      googleInfo: {}
+      googleInfo: {},
+      photoArray: []
     };
   },
   created: function() {
@@ -287,8 +288,8 @@ var RestaurantsShowPage = {
 
     axios.get("v1/googlerestaurants/" + this.$route.params.id).then(
       function(response) {
-        this.googleInfo = response.data;
-        this.reviews = response.data.reviews;
+        this.googleInfo = response.data.main;
+        this.reviews = response.data.main.reviews;
 
         rating(".visitor-rating");
         var _latitude = this.googleInfo.geometry.location.lat;
@@ -303,7 +304,16 @@ var RestaurantsShowPage = {
         this.wikiInfo = response.data;
       }.bind(this)
     );
+
+    // attempt to get pictures!!!!
+    // var request = {
+    //   placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4"
+    // };
+    // service = new google.maps.places.PlacesService(map);
+    // this.photoArray = service.getDetails(request);
+    // console.log("hello", this.photoArray);
   },
+
   mounted: function() {},
 
   methods: {

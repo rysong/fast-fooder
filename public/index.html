@@ -434,7 +434,6 @@
                         <!--end item-->
                     </div>
                     <!--<end col-md-3-->
-
                 </div> 
                 <!--end row-->
                 <div class="center">
@@ -1443,15 +1442,11 @@
                 <div class="col-md-5 col-sm-5">
                     <div class="detail-sidebar">
                         <section class="shadow">
-                            <div class="map height-250px" id="map-detail"></div>
+                            <div class="map height-250px" id="map"></div>
                             <!--end map-->
                             <div class="content">
-                                <div class="vertical-aligned-elements">
-                                    <div class="element"><img src="assets/img/logo-2.png" alt=""></div>
-                                </div>
-                                <hr>
                                 <address>
-                                    <figure><i class="fa fa-map-marker"></i>{{ restaurant.address }} </figure>
+                                    <figure><i class="fa fa-map-marker"></i>{{ restaurant.address + "(" + travelDistance + "or" + travelDuration + "away)" }} </figure>
                                     <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
                                     <figure><i class="fa fa-phone"></i>{{ googleInfo.formatted_phone_number }}</figure>
                                     <figure><i class="fa fa-globe"></i><a v-bind:href="googleInfo.website">{{restaurant.name}} Website</a> </figure>

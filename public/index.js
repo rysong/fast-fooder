@@ -288,7 +288,8 @@ var RestaurantsShowPage = {
       errors: [],
       wikiInfo: {},
       googleInfo: {},
-      photoArray: []
+      travelDistance: "",
+      travelDuration: ""
     };
   },
   created: function() {
@@ -309,11 +310,70 @@ var RestaurantsShowPage = {
         this.googleInfo = response.data.main;
         this.reviews = response.data.main.reviews;
 
-        rating(".visitor-rating");
-        var _latitude = this.googleInfo.geometry.location.lat;
-        var _longitude = this.googleInfo.geometry.location.lng;
-        var element = "map-detail";
-        simpleMap(_latitude, _longitude, element);
+        //theme map
+        // rating(".visitor-rating");
+        // var _latitude = this.googleInfo.geometry.location.lat;
+        // var _longitude = this.googleInfo.geometry.location.lng;
+        // var element = "map-detail";
+        // simpleMap(_latitude, _longitude, element);
+
+        //shows google map with route between two places
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        var place = new google.maps.LatLng(
+          this.googleInfo.geometry.location.lat,
+          this.googleInfo.geometry.location.lng
+        );
+        var start = new google.maps.LatLng(41.892156, -87.634794); //Actualize coordinates
+        var mapOptions = {
+          zoom: 14,
+          center: place
+        };
+        var map = new google.maps.Map(
+          document.getElementById("map"),
+          mapOptions
+        );
+        directionsDisplay.setMap(map);
+
+        var request = {
+          origin: start,
+          destination: place,
+          travelMode: google.maps.TravelMode["DRIVING"]
+        };
+        directionsService.route(request, function(response, status) {
+          if (status === "OK") {
+            directionsDisplay.setDirections(response);
+          }
+        });
+
+        //Time and Miles from my location to restuarant
+        var origin1 = new google.maps.LatLng(41.892156, -87.634794);
+        var destinationA = new google.maps.LatLng(
+          this.googleInfo.geometry.location.lat,
+          this.googleInfo.geometry.location.lng
+        );
+        var service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+          {
+            origins: [origin1],
+            destinations: [destinationA],
+            unitSystem: google.maps.UnitSystem.IMPERIAL,
+            travelMode: "DRIVING"
+          },
+          callback
+        );
+        function callback(response, status) {
+          // See Parsing the Results for
+          // the basics of a callback function.
+          console.log("callback finished", response, status);
+          console.log(
+            "Useful Info",
+            response.rows[0].elements[0].distance.text,
+            response.rows[0].elements[0].duration.text
+          );
+          this.travelDistance = response.rows[0].elements[0].distance.text;
+          this.travelDuration = response.rows[0].elements[0].duration.text;
+        }
       }.bind(this)
     );
 

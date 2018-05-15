@@ -53,6 +53,34 @@ var HomePage = {
                 );
               }
             });
+
+            //Time and Miles from my location to restuarant
+            var origin1 = new google.maps.LatLng(41.892156, -87.634794);
+            var destinationA = restaurant.address;
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix(
+              {
+                origins: [origin1],
+                destinations: [destinationA],
+                unitSystem: google.maps.UnitSystem.IMPERIAL,
+                travelMode: "DRIVING"
+              },
+              callback
+            );
+            function callback(response, status) {
+              // See Parsing the Results for
+              // the basics of a callback function.
+              console.log("callback finished", response, status);
+              console.log(
+                "Useful Info",
+                response.rows[0].elements[0].distance.text,
+                response.rows[0].elements[0].duration.text
+              );
+              restaurant.travelDistance =
+                response.rows[0].elements[0].distance.text;
+              restaurant.travelDuration =
+                response.rows[0].elements[0].duration.text;
+            }
           }.bind(this)
         );
       }.bind(this)
@@ -382,14 +410,6 @@ var RestaurantsShowPage = {
         this.wikiInfo = response.data;
       }.bind(this)
     );
-
-    // attempt to get pictures!!!!
-    // var request = {
-    //   placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4"
-    // };
-    // service = new google.maps.places.PlacesService(map);
-    // this.photoArray = service.getDetails(request);
-    // console.log("hello", this.photoArray);
   },
 
   mounted: function() {},

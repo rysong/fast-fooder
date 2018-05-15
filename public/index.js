@@ -8,6 +8,8 @@ var HomePage = {
       restaurants: [],
       restaurantCoordinates: [],
       nameFilter: "",
+      sortAttribute: "",
+      sortAscending: true,
       randomRestaurant: {},
       randomMeal: "",
       map: null
@@ -174,12 +176,11 @@ var HomePage = {
       var mealOptions = this.randomRestaurant.meals;
       var randomMealIndex = Math.floor(Math.random() * mealOptions.length);
       this.randomMeal = mealOptions[randomMealIndex];
+    },
+    setSortAttribute: function(inputSortAttribute) {
+      this.sortAttribute = inputSortAttribute;
+      this.sortAscending = !this.sortAscending;
     }
-    // sortedRestaurants: function() {
-    //   return this.restaurants.sort(function(restaurant1, restaurant2) {
-    //     return restaurant1.speed_of_service - restaurant2.speed_of_service;
-    //   });
-    // }
   },
   computed: {
     filteredRestaurants: function() {
@@ -190,6 +191,21 @@ var HomePage = {
           var visible = lowerRestaurantName.includes(lowerNameFilter);
           // restaurant.marker.setVisible(visible);
           return visible;
+        }.bind(this)
+      );
+    },
+    sortedRestaurants: function() {
+      return this.restaurants.sort(
+        function(restaurant1, restaurant2) {
+          if (this.sortAscending) {
+            return (
+              restaurant2[this.sortAttribute] - restaurant1[this.sortAttribute]
+            );
+          } else {
+            return (
+              restaurant1[this.sortAttribute] - restaurant2[this.sortAttribute]
+            );
+          }
         }.bind(this)
       );
     }
@@ -401,6 +417,11 @@ var RestaurantsShowPage = {
           );
           this.travelDistance = response.rows[0].elements[0].distance.text;
           this.travelDuration = response.rows[0].elements[0].duration.text;
+          console.log(
+            "The real useful Info",
+            this.travelDistance,
+            this.travelDuration
+          );
         }
       }.bind(this)
     );

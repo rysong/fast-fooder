@@ -358,19 +358,20 @@
                     <div class="section-title">
                         <div class="center">
                             <h2>Suggested Places</h2>
-                            <button >Sort by Speed</button>
+                            <button class="btn btn-primary" v-on:click="setSortAttribute('speed_of_service')">Sort by Speed</button>
                         </div>
                     </div>
                     <!--end section-title-->
                 </div>
                 <!--end center-->
                 <div class="row">
-                    <div class="col-md-3 col-sm-3" v-for="restaurant in restaurants">
+                    <div class="col-md-3 col-sm-3" v-for="restaurant in sortedRestaurants">
                         <div class="item" data-id="1">
                             <a v-bind:href=" '/#/restaurants/' + restaurant.id ">
                                 <div class="description">
-                                    <figure>Average Speed: {{restaurant.speed_of_service}} min</figure>
-                                    <figure>Distance: {{restaurant.travelDistance}} </figure>
+                                    <figure>Average Speed of Service: {{restaurant.speed_of_service}} min</figure>
+                                    <figure>Travel Distance: {{restaurant.travelDistance}} </figure>
+                                    <figure>Travel Time: {{restaurant.travelDuration}} </figure>
                                     <div class="label label-default">Restaurant</div>
                                     <h3>{{ restaurant.name }}</h3>
                                     <h4>{{ restaurant.address }}</h4>
@@ -1244,6 +1245,7 @@
                 <h1>{{ restaurant.name }}</h1>
                 <h3>{{ restaurant.address }}</h3>
                 <h3>Average Speed of Service: {{ restaurant.speed_of_service }} minutes</h3>
+                <h3>{{ travelDistance }}</h3>
                 <div class="rating-passive" v-bind:data-rating=4><!-- v-bind:data-rating="googleInfo.rating" need to fix theme to show this rating-->
                     <span class="stars"></span>
                     <!-- <span class="reviews">{{reviews.length}}</span> shows number of reviews for restaurant--> 

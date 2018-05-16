@@ -30,7 +30,7 @@
         <header id="page-header">
             <nav>
                 <div class="left">
-                    <a href="index.html" class="brand"><img alt="">Fast Fooder</a>
+                    <a href="/" class="brand"><img alt="">Fast Fooderrrr</a>
                 </div>
                 <!--end left-->
                 <div class="right">
@@ -205,8 +205,8 @@
                     </div>
                     <!--end primary-nav-->
                     <div class="secondary-nav">
-                        <a href="#" data-modal-external-file="modal_sign_in.php" data-target="modal-sign-in">Sign In</a>
-                        <a href="#" class="promoted" data-modal-external-file="modal_register.php" data-target="modal-register">Register</a>
+                        <a href="#/login">Login</a>
+                        <a href="#/signup">Sign Up</a>
                     </div>
                     <!--end secondary-nav-->
                     <a href="#" class="btn btn-primary btn-small btn-rounded icon shadow add-listing" data-modal-external-file="modal_submit.php" data-target="modal-submit"><i class="fa fa-plus"></i><span>Add listing</span></a>
@@ -1261,18 +1261,9 @@
                     <div class="image">
                         <div class="bg-transfer"><img v-bind:src="restaurant.primary_image" alt="test"></div>
                     </div>
-                    <div class="image">
-                        <div class="bg-transfer"><img v-bind:src="restaurant.images[0].url" alt=""></div>
+                    <div v-for="image in restaurant.images" class="image">
+                        <div class="bg-transfer"><img v-bind:src="image.url" alt=""></div>
                     </div>
-                    <div class="image">
-                        <div class="bg-transfer"><img v-bind:src="restaurant.images[1].url" alt=""></div>
-                    </div>
-                    <div class="image">
-                        <div class="bg-transfer"><img v-bind:src="restaurant.images[2].url" alt=""></div>
-                    </div>
-                   <!--  <div class="image">
-                        <div class="bg-transfer"><img src="assets/img/items/23.jpg" alt=""></div>
-                    </div> -->
                 </div>
                 <!--end owl-carousel-->
             </div>
@@ -1517,7 +1508,7 @@
   <div class="vue-component">
 
     <div class="container">
-      <h1>Signup</h1>
+      <h1>Sign Up</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>

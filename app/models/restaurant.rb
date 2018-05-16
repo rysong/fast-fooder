@@ -13,7 +13,9 @@ class Restaurant < ApplicationRecord
       images: images, 
       speed_of_service: speed_of_service,
       reviews: reviews.as_json,
-      meals: meals.as_json
+      meals: meals.as_json,
+      travelDistance: "",
+      travelDuration: ""
     }
   end   
 end

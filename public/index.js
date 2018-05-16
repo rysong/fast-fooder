@@ -326,7 +326,7 @@ var RestaurantsShowPage = {
   template: "#restaurants-show-page",
   data: function() {
     return {
-      restaurant: {},
+      restaurant: { images: [] },
       reviews: [],
       meals: [],
       errors: [],
@@ -337,6 +337,8 @@ var RestaurantsShowPage = {
     };
   },
   created: function() {
+    var that = this;
+
     axios.get("v1/restaurants/" + this.$route.params.id).then(
       function(response) {
         this.restaurant = response.data;
@@ -415,12 +417,12 @@ var RestaurantsShowPage = {
             response.rows[0].elements[0].distance.text,
             response.rows[0].elements[0].duration.text
           );
-          this.travelDistance = response.rows[0].elements[0].distance.text;
-          this.travelDuration = response.rows[0].elements[0].duration.text;
+          that.travelDistance = response.rows[0].elements[0].distance.text;
+          that.travelDuration = response.rows[0].elements[0].duration.text;
           console.log(
             "The real useful Info",
-            this.travelDistance,
-            this.travelDuration
+            that.travelDistance,
+            that.travelDuration
           );
         }
       }.bind(this)

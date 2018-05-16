@@ -389,7 +389,7 @@
                 <div class="col-md-7 col-sm-7">
                     <div id="gallery-nav"></div>
                     <section>
-                        <h2>About this listing</h2>
+                        <h2>About this Restaurant</h2>
                         <p>
                             {{ wikiInfo.extract }}
                         </p>
@@ -417,6 +417,7 @@
                                     <div class="rating-passive" data-rating="4">
                                         <span class="stars"></span>
                                     </div>
+                                    <span class="date">{{ review.author_name + ":" }}</span>
                                     <span class="date">{{ review.relative_time_description }}</span>
                                 </figure>
                                 <p>{{ review.text }}</p>
@@ -565,13 +566,12 @@
                         <section>
                             <h2>Opening Hours</h2>
                             <dl>
-                                <!-- {{ googleInfo.opening_hours.weekday_text[0] }} -->
                                 <dt>Monday</dt>
                                 <dd>08:00am - 11:00pm</dd>
                                 <dt>Tuesday</dt>
                                 <dd>08:00am - 11:00pm</dd>
                                 <dt>Wednesday</dt>
-                                <dd>12:00am - 11:00pm</dd>
+                                <dd>08:00am - 11:00pm</dd>
                                 <dt>Thursday</dt>
                                 <dd>08:00am - 11:00pm</dd>
                                 <dt>Friday</dt>
@@ -582,6 +582,13 @@
                                 <dd>Closed</dd>
                             </dl>
                         </section>
+                        <!-- <section >
+                            <h2>Opening Hours</h2>
+                            <dl v-for="hours in googleInfo.opening_hours.weekday_text">
+                                <dt>{{ hours }}</dt>
+                                <br>
+                            </dl>
+                        </section> -->
                         <section>
                             <h2>Share This Listing</h2>
                             <div class="social-share"></div>

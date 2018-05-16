@@ -72,16 +72,22 @@ var HomePage = {
             function callback(response, status) {
               // See Parsing the Results for
               // the basics of a callback function.
-              console.log("callback finished", response, status);
-              console.log(
-                "Useful Info",
-                response.rows[0].elements[0].distance.text,
-                response.rows[0].elements[0].duration.text
-              );
               restaurant.travelDistance =
                 response.rows[0].elements[0].distance.text;
-              restaurant.travelDuration =
+              restaurant.travelDurationText =
                 response.rows[0].elements[0].duration.text;
+              restaurant.travelDurationValue =
+                response.rows[0].elements[0].duration.value;
+
+              var travelMinutes = Math.ceil(
+                restaurant.travelDurationValue / 60
+              );
+              restaurant.chowTime = restaurant.speed_of_service + travelMinutes;
+              console.log(
+                "chowTime INFO",
+                restaurant.name,
+                restaurant.chowTime
+              );
             }
           }.bind(this)
         );
@@ -333,7 +339,7 @@ var RestaurantsShowPage = {
       wikiInfo: {},
       googleInfo: {},
       travelDistance: "",
-      travelDuration: ""
+      travelDurationText: ""
     };
   },
   created: function() {
@@ -418,11 +424,11 @@ var RestaurantsShowPage = {
             response.rows[0].elements[0].duration.text
           );
           that.travelDistance = response.rows[0].elements[0].distance.text;
-          that.travelDuration = response.rows[0].elements[0].duration.text;
+          that.travelDurationText = response.rows[0].elements[0].duration.text;
           console.log(
             "The real useful Info",
             that.travelDistance,
-            that.travelDuration
+            that.travelDurationText
           );
         }
       }.bind(this)

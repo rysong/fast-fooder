@@ -15,7 +15,9 @@ class Restaurant < ApplicationRecord
       reviews: reviews.as_json,
       meals: meals.as_json,
       travelDistance: "",
-      travelDuration: ""
+      travelDurationText: "",
+      travelDurationValue: 0, 
+      chowTime: 0
     }
   end   
 end

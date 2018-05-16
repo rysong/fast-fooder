@@ -358,7 +358,10 @@
                     <div class="section-title">
                         <div class="center">
                             <h2>Suggested Places</h2>
-                            <button class="btn btn-primary" v-on:click="setSortAttribute('speed_of_service')">Sort by Speed</button>
+                            <h2>Sort By:</h2>
+                            <button class="btn btn-primary" v-on:click="setSortAttribute('speed_of_service')">Speed</button>
+                            <button class="btn btn-primary" v-on:click="setSortAttribute('travelDurationValue')">Distance</button>
+                            <button class="btn btn-primary" v-on:click="setSortAttribute('chowTime')">Chow Time</button>
                         </div>
                     </div>
                     <!--end section-title-->
@@ -371,7 +374,7 @@
                                 <div class="description">
                                     <figure>Average Speed of Service: {{restaurant.speed_of_service}} min</figure>
                                     <figure>Travel Distance: {{restaurant.travelDistance}} </figure>
-                                    <figure>Travel Time: {{restaurant.travelDuration}} </figure>
+                                    <figure>Travel Time: {{restaurant.travelDurationText}} </figure>
                                     <div class="label label-default">Restaurant</div>
                                     <h3>{{ restaurant.name }}</h3>
                                     <h4>{{ restaurant.address }}</h4>
@@ -389,9 +392,8 @@
                                 </div>
                                 <div class="controls-more">
                                     <ul>
+                                        <li><a v-bind:href=" '/#/restaurants/' + restaurant.id " class="quick-detail">More Details</a></li>
                                         <li><a href="#">Add to favorites</a></li>
-                                        <li><a href="#">Add to watchlist</a></li>
-                                        <li><a href="#" class="quick-detail">Quick detail</a></li>
                                     </ul>
                                 </div>
                                 <!--end controls-more-->
@@ -1440,7 +1442,7 @@
                             <!--end map-->
                             <div class="content">
                                 <address>
-                                    <figure><i class="fa fa-map-marker"></i>{{ restaurant.address + "(" + travelDistance + "or" + travelDuration + "away)" }} </figure>
+                                    <figure><i class="fa fa-map-marker"></i>{{ restaurant.address + "(" + travelDistance + "or" + travelDurationText + "away)" }} </figure>
                                     <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
                                     <figure><i class="fa fa-phone"></i>{{ googleInfo.formatted_phone_number }}</figure>
                                     <figure><i class="fa fa-globe"></i><a v-bind:href="googleInfo.website">{{restaurant.name}} Website</a> </figure>

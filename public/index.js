@@ -37,7 +37,8 @@ var HomePage = {
                 map.setCenter(results[0].geometry.location);
                 var marker = new google.maps.Marker({
                   map: map,
-                  position: results[0].geometry.location
+                  position: results[0].geometry.location,
+                  animation: google.maps.Animation.DROP
                 });
 
                 var infowindow = new google.maps.InfoWindow({
@@ -182,6 +183,9 @@ var HomePage = {
       var mealOptions = this.randomRestaurant.meals;
       var randomMealIndex = Math.floor(Math.random() * mealOptions.length);
       this.randomMeal = mealOptions[randomMealIndex];
+      Vue.nextTick(function() {
+        bgTransfer();
+      });
     },
     setSortAttribute: function(inputSortAttribute) {
       this.sortAttribute = inputSortAttribute;

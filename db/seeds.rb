@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#users 
 user = User.new(
   name: "Richard Song",
   email: "richard@email.com",
@@ -29,7 +30,8 @@ user = User.new(
   admin: false 
   )
 user.save 
-
+#------------------------------------------
+#restaurant 1 
 restaurant = Restaurant.new(
   name: "McDonald's", 
   address: "600 N Clark St, Chicago, IL 60610" 

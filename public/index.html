@@ -190,8 +190,8 @@
                 <div class="center">
                     <div class="section-title">
                         <div class="center">
-                            <h2>Suggested Places</h2>
-                            <h2>Sort By:</h2>
+                            <h2>All Restaurants</h2>
+                            <h3>Sort By:</h3>
                             <button class="btn btn-primary" v-on:click="setSortAttribute('speed_of_service')" id="b1">Speed</button>
                             <button class="btn btn-primary" v-on:click="setSortAttribute('travelDurationValue')">Distance</button>
                             <button class="btn btn-primary" v-on:click="setSortAttribute('chowTime')">Chow Time</button>
@@ -206,7 +206,7 @@
                             <a v-bind:href=" '/#/restaurants/' + restaurant.id ">
                                 <div class="description">
                                     <figure>Average Speed of Service: {{restaurant.speed_of_service}} min</figure>
-                                    <figure>Travel Distance: {{restaurant.travelDistance}} </figure>
+                                    <figure>Distance: {{restaurant.travelDistance}} </figure>
                                     <figure>Travel Time: {{restaurant.travelDurationText}} </figure>
                                     <div class="label label-default">Restaurant</div>
                                     <h3>{{ restaurant.name }}</h3>
@@ -225,7 +225,7 @@
                                 </div>
                                 <div class="controls-more">
                                     <ul>
-                                        <li><a v-bind:href=" '/#/restaurants/' + restaurant.id " class="quick-detail">More Details</a></li>
+                                        <li><a v-bind:href=" '/#/restaurants/' + restaurant.id ">More Details</a></li>
                                         <li><a href="#">Add to favorites</a></li>
                                     </ul>
                                 </div>
@@ -273,13 +273,43 @@
                     <!--<end col-md-3-->
                 </div> 
                 <!--end row-->
-                <br>    
-                <div class="center">
+                <br>
+                <h2>Suggested Meal</h2>
                     <button class="btn btn-primary btn-light-frame btn-rounded btn-framed" v-on:click="randomSelector()">I'm Indecisive</button>
-                    <div> {{ randomRestaurant.name }}</div>
-                    <div>{{ randomMeal.description }}</div>
-                </div>
-            <!--end center-->
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="item" data-id="1">
+                            <a v-bind:href=" '/#/restaurants/' + randomRestaurant.id ">
+                                <div class="description">
+                                    <h3>{{ randomRestaurant.name }}</h3>
+                                    <h4>{{ randomMeal.description }}</h4>
+                                    <figure>Upvotes: {{randomMeal.upvotes}}</figure>
+                                </div>
+                                <!--end description-->
+                                <div class="image bg-transfer">
+                                    <img v-bind:src="randomMeal.image" alt="">
+                                </div>
+                                <!--end image-->
+                            </a>
+                            <div class="additional-info">
+                                <div class="rating-passive" v-bind:data-rating="4">
+                                    <span class="stars"></span> 
+                                </div>
+                                <div class="controls-more">
+                                    <ul>
+                                        <li><a v-bind:href=" '/#/restaurants/' + randomRestaurant.id ">More Details</a></li>
+                                        <li><a href="#">Add to favorites</a></li>
+                                    </ul>
+                                </div>
+                                <!--end controls-more-->
+                            </div>
+                            <!--end additional-info-->
+                        </div>
+                        <!--end item-->
+                    </div>
+                    <!--<end col-md-3-->
+                </div> 
+                <!--end row-->  
             </div>
             <!--end container-->
         </section>

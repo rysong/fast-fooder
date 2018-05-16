@@ -186,6 +186,9 @@ var HomePage = {
     setSortAttribute: function(inputSortAttribute) {
       this.sortAttribute = inputSortAttribute;
       this.sortAscending = !this.sortAscending;
+      Vue.nextTick(function() {
+        bgTransfer();
+      });
     }
   },
   computed: {

@@ -331,7 +331,6 @@
                 <h1>{{ restaurant.name }}</h1>
                 <h3>{{ restaurant.address }}</h3>
                 <h3>Average Speed of Service: {{ restaurant.speed_of_service }} minutes</h3>
-                <h3>{{ travelDistance }}</h3>
                 <div class="rating-passive" v-bind:data-rating=4><!-- v-bind:data-rating="googleInfo.rating" need to fix theme to show this rating-->
                     <span class="stars"></span>
                     <!-- <span class="reviews">{{reviews.length}}</span> shows number of reviews for restaurant--> 
@@ -526,8 +525,8 @@
                             <!--end map-->
                             <div class="content">
                                 <address>
-                                    <figure><i class="fa fa-map-marker"></i>{{ restaurant.address + "(" + travelDistance + "or" + travelDurationText + "away)" }} </figure>
-                                    <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
+                                    <figure><i class="fa fa-map-marker"></i>{{ restaurant.address +" (" + travelDistance + " or " + travelDurationText + " away)" }} </figure>
+                                    <!-- <figure><i class="fa fa-map-marker"></i>{{ travelDistance + " or " + travelDurationText + " away)" }}</figure> -->
                                     <figure><i class="fa fa-phone"></i>{{ googleInfo.formatted_phone_number }}</figure>
                                     <figure><i class="fa fa-globe"></i><a v-bind:href="googleInfo.website">{{restaurant.name}} Website</a> </figure>
                                 </address>

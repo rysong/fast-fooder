@@ -222,6 +222,20 @@ var HomePage = {
         }.bind(this)
       );
     }
+  },
+  watch: {
+    nameFilter: function() {
+      console.log("nameFilter changed", this.filteredRestaurants.length);
+
+      this.restaurants.forEach(
+        function(restaurant) {
+          var lowerRestaurantName = restaurant.name.toLowerCase();
+          var lowerNameFilter = this.nameFilter.toLowerCase();
+          var visible = lowerRestaurantName.includes(lowerNameFilter);
+          restaurant.marker.setVisible(visible);
+        }.bind(this)
+      );
+    }
   }
 };
 
@@ -344,7 +358,7 @@ var RestaurantsShowPage = {
       meals: [],
       errors: [],
       wikiInfo: {},
-      googleInfo: {},
+      googleInfo: { opening_hours: {} },
       travelDistance: "",
       travelDurationText: ""
     };
@@ -359,7 +373,7 @@ var RestaurantsShowPage = {
         this.meals = response.data.meals;
 
         Vue.nextTick(function() {
-          bgTransfer();
+          // bgTransfer();
         });
       }.bind(this)
     );
@@ -369,6 +383,9 @@ var RestaurantsShowPage = {
         this.googleInfo = response.data.main;
         this.reviews = response.data.main.reviews;
 
+        Vue.nextTick(function() {
+          bgTransfer();
+        });
         //theme map
         // rating(".visitor-rating");
         // var _latitude = this.googleInfo.geometry.location.lat;

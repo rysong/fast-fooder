@@ -274,10 +274,11 @@
                 </div> 
                 <!--end row-->
                 <br>
-                <h2>Suggested Meal</h2>
-                    <button class="btn btn-primary btn-light-frame btn-rounded btn-framed" v-on:click="randomSelector()">I'm Indecisive</button>
                 <div class="row">
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4 col-sm-4">
+                        <h2>Suggested Meal</h2>
+                        <button class="btn btn-primary btn-light-frame btn-rounded btn-framed" v-on:click="randomSelector()">I'm Indecisive</button>
                         <div class="item" data-id="1">
                             <a v-bind:href=" '/#/restaurants/' + randomRestaurant.id ">
                                 <div class="description">
@@ -386,7 +387,7 @@
         </section>
         <div class="container">
             <div class="row">
-                <div class="col-md-7 col-sm-7">
+                <div class="col-md-7 col-sm-7" style="background-color: white !important">
                     <div id="gallery-nav"></div>
                     <section>
                         <h2>About this Restaurant</h2>
@@ -410,7 +411,7 @@
                         <h2>Reviews</h2>
                         <div class="review" v-for="review in reviews">
                             <div class="image">
-                                <div class="bg-transfer"><img v-bind:src="review.profile_photo_url" alt=""></div>
+                                <div class="bg-transfer" style="z-index: 1"><img v-bind:src="review.profile_photo_url" alt=""></div>
                             </div>
                             <div class="description">
                                 <figure>
@@ -426,7 +427,7 @@
                         <!--end review-->
                         <div class="review">
                             <div class="image">
-                                <div class="bg-transfer"><img src="assets/img/person-01.jpg" alt=""></div>
+                                <div class="bg-transfer" style="z-index: 1"><img src="assets/img/person-01.jpg" alt=""></div>
                             </div>
                             <div class="description">
                                 <figure>
@@ -563,7 +564,7 @@
                                 </address>
                             </div>
                         </section>
-                        <section>
+                        <!-- <section>
                             <h2>Opening Hours</h2>
                             <dl>
                                 <dt>Monday</dt>
@@ -581,14 +582,14 @@
                                 <dt>Sunday</dt>
                                 <dd>Closed</dd>
                             </dl>
-                        </section>
-                        <!-- <section >
+                        </section> -->
+                        <section >
                             <h2>Opening Hours</h2>
                             <dl v-for="hours in googleInfo.opening_hours.weekday_text">
-                                <dt>{{ hours }}</dt>
-                                <br>
+                                <dt>{{ hours.split(": ")[0] }}</dt>
+                                <dd>{{ hours.split(": ")[1] }}</dd>
                             </dl>
-                        </section> -->
+                        </section>
                         <section>
                             <h2>Share This Listing</h2>
                             <div class="social-share"></div>

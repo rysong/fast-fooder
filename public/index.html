@@ -265,8 +265,9 @@
                         <div class="item" data-id="1">
                             <a v-bind:href=" '/#/restaurants/' + randomRestaurant.id ">
                                 <div class="description">
-                                    <h3>{{ randomRestaurant.name }}</h3>
-                                    <h4>{{ randomMeal.description }}</h4>
+                                    <h3>{{ randomMeal.description }}</h3>
+                                    <h4>@{{ randomRestaurant.name }}</h4>
+                                    <br>
                                     <figure>Upvotes: {{randomMeal.upvotes}}</figure>
                                 </div>
                                 <!--end description-->

@@ -30,7 +30,7 @@
         <header id="page-header">
             <nav>
                 <div class="left">
-                    <a href="/" class="brand"><img alt="">Fast Fooderrrr</a>
+                    <a href="/" class="brand"><img src="http://www.myiconfinder.com/uploads/iconsets/256-256-50d2bb24a01a3c32510470c6cf675782-burger.png" width="30" height="30"alt="">  Fast Fooder</a>
                 </div>
                 <!--end left-->
                 <div class="right">
@@ -87,7 +87,7 @@
                 <div class="footer-navigation">
                     <div class="container">
                         <div class="vertical-aligned-elements">
-                            <div class="element width-50">(C) 2018 Fast Fooder, All right reserved</div>
+                            <div class="element width-50">(C) 2018 Fast Fooder, All rights reserved</div>
                             <div class="element width-50 text-align-right">
                             </div>
                         </div>
@@ -169,9 +169,25 @@
                             </div>
                             <!--end section-title-->
                             <div class="results-content" style="height: 400px">
-                                <div v-for="restaurant in filteredRestaurants">
+                                <!-- <div v-for="restaurant in filteredRestaurants">
                                     <a v-bind:href=" '/#/restaurants/' + restaurant.id ">{{ restaurant.name }}</a>
-                                </div> 
+                                </div>  -->
+                                    <div class="item" data-id="1" v-for="restaurant in filteredRestaurants">
+                                        <a v-bind:href=" '/#/restaurants/' + restaurant.id ">
+                                            <div class="description">
+                                                <div class="label label-default">Restaurant</div>
+                                                <h3>{{ restaurant.name }}</h3>
+                                                <h4>{{ restaurant.address }}</h4>
+                                            </div>
+                                            <!--end description-->
+                                            <div class="image bg-transfer">
+                                                <img v-bind:src="restaurant.logo" alt="">
+                                            </div>
+                                            <!--end image-->
+                                        </a>
+                                    </div>
+                                    <!--end item-->
+                                <!--<end col-md-3-->
                             </div>
                             <!--end results-content-->
                         </div>
@@ -236,49 +252,16 @@
                         <!--end item-->
                     </div>
                     <!--<end col-md-3-->
-
-                    <div class="col-md-3 col-sm-3">
-                        <div class="item" data-id="1">
-                            <a href="detail.html">
-                                <div class="description">
-                                    <figure>Average Price: $8 - $30</figure>
-                                    <div class="label label-default">Restaurant</div>
-                                    <h3>Marky’s Restaurant</h3>
-                                    <h4>63 Birch Street</h4>
-                                </div>
-                                <!--end description-->
-                                <div class="image bg-transfer">
-                                    <img src="assets/img/items/1.jpg" alt="">
-                                </div>
-                                <!--end image-->
-                            </a>
-                            <div class="additional-info">
-                                <div class="rating-passive" data-rating="4">
-                                    <span class="stars"></span>
-                                    <span class="reviews">6</span>
-                                </div>
-                                <div class="controls-more">
-                                    <ul>
-                                        <li><a href="#">Add to favorites</a></li>
-                                        <li><a href="#">Add to watchlist</a></li>
-                                        <li><a href="#" class="quick-detail">Quick detail</a></li>
-                                    </ul>
-                                </div>
-                                <!--end controls-more-->
-                            </div>
-                            <!--end additional-info-->
-                        </div>
-                        <!--end item-->
-                    </div>
-                    <!--<end col-md-3-->
                 </div> 
                 <!--end row-->
                 <br>
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 col-sm-4">
-                        <h2>Suggested Meal</h2>
-                        <button class="btn btn-primary btn-light-frame btn-rounded btn-framed" v-on:click="randomSelector()">I'm Indecisive</button>
+                        <div class="center">
+                            <h2>Suggested Meal</h2>
+                            <button class="btn btn-primary btn-light-frame btn-rounded btn-framed" v-on:click="randomSelector()">I'm Indecisive</button>
+                        </div>
                         <div class="item" data-id="1">
                             <a v-bind:href=" '/#/restaurants/' + randomRestaurant.id ">
                                 <div class="description">
@@ -288,18 +271,14 @@
                                 </div>
                                 <!--end description-->
                                 <div class="image bg-transfer">
-                                    <img v-bind:src="randomMeal.image" alt="">
+                                    <img v-bind:src="randomMeal.image" alt="" align="top">
                                 </div>
                                 <!--end image-->
                             </a>
                             <div class="additional-info">
-                                <div class="rating-passive" v-bind:data-rating="4">
-                                    <span class="stars"></span> 
-                                </div>
                                 <div class="controls-more">
                                     <ul>
                                         <li><a v-bind:href=" '/#/restaurants/' + randomRestaurant.id ">More Details</a></li>
-                                        <li><a href="#">Add to favorites</a></li>
                                     </ul>
                                 </div>
                                 <!--end controls-more-->
@@ -415,9 +394,9 @@
                             </div>
                             <div class="description">
                                 <figure>
-                                    <div class="rating-passive" data-rating="4">
+                                    <!-- <div class="rating-passive" data-rating="4">
                                         <span class="stars"></span>
-                                    </div>
+                                    </div> -->
                                     <span class="date">{{ review.author_name + ":" }}</span>
                                     <span class="date">{{ review.relative_time_description }}</span>
                                 </figure>
@@ -425,38 +404,20 @@
                             </div>
                         </div>
                         <!--end review-->
-                        <div class="review">
-                            <div class="image">
-                                <div class="bg-transfer" style="z-index: 1"><img src="assets/img/person-01.jpg" alt=""></div>
-                            </div>
-                            <div class="description">
-                                <figure>
-                                    <div class="rating-passive" data-rating="5">
-                                        <span class="stars"></span>
-                                        <span class="reviews">6</span>
-                                    </div>
-                                    <span class="date">09.05.2016</span>
-                                </figure>
-                                <p>Vestibulum vel est massa. Integer pellentesque non augue et accumsan. Maecenas molestie elit nibh,
-                                    vel vestibulum leo condimentum quis. Duis ac orci a magna auctor vehicula.
-                                </p>
-                            </div>
-                        </div>
-                        <!--end review-->
                     </section>
                     <section>
                         <h2>Top Meals</h2>
                         <div v-for="meal in topMeals">
-                            <p>{{ meal.description + " (upvotes:" + meal.upvotes + ")"}}</p>
-                            <img v-bind:src="meal.image" height="200" width="200">
+                            <h3>{{ meal.description + " (upvotes:" + meal.upvotes + ")"}}</h3>
                             <button class="btn btn-primary" v-on:click="upvote(meal)">Upvote</button>
-                                <form>
-                                  Comment:<br>
-                                  <input type="text" placeholder="What do you want to say about it?" v-model="meal.new_user_meal_text">
-                                  <br>
-                                  <button type="submit" class="btn btn-primary" v-on:click="submit(meal)">Submit</button>
-                                </form> 
-
+                            <div>
+                                <img v-bind:src="meal.image" height="200" width="200">
+                            </div>
+                                <div>
+                                    <input type="text" placeholder="Say something about it" v-model="meal.new_user_meal_text">
+                                    <br>
+                                    <button type="submit" class="btn btn-primary" v-on:click="submit(meal)">Submit</button>
+                                </div> 
                             <li v-for="user_meal in meal.user_meals"> {{user_meal.user.name + ": " + user_meal.text  }} </li>
 
                             <div class="image">
@@ -473,24 +434,6 @@
                             </div>
                         </div>
                         <!--end review-->
-                        <div class="review">
-                            <div class="image">
-                                <div class="bg-transfer"><img src="assets/img/person-01.jpg" alt=""></div>
-                            </div>
-                            <div class="description">
-                                <figure>
-                                    <div class="rating-passive" data-rating="5">
-                                        <span class="stars"></span>
-                                        <span class="reviews">6</span>
-                                    </div>
-                                    <span class="date">09.05.2016</span>
-                                </figure>
-                                <p>Vestibulum vel est massa. Integer pellentesque non augue et accumsan. Maecenas molestie elit nibh,
-                                    vel vestibulum leo condimentum quis. Duis ac orci a magna auctor vehicula.
-                                </p>
-                            </div>
-                        </div>
-                        <!--end review-->
                     </section>
                     <section id="write-a-review">
                         <h2>Write a Review</h2>
@@ -504,8 +447,8 @@
                                             </div>
                                             <!--end title-->
                                            <div class="form-group">
-                                                <label for="name">Title of your review<em>*</em></label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Delicious Food!" required="">
+                                                <label for="name">Rating<em>*</em></label>
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="1 is terrible, 5 is perfect" required="">
                                             </div>
 
                                             <div class="form-group">
@@ -515,25 +458,6 @@
                                             <!--end form-group-->
                                         </div>
                                         <!--end col-md-8-->
-                                        <div class="col-md-4">
-                                            <div class="comment-title">
-                                                <h4>Rating</h4>
-                                            </div>
-                                            <!--end title-->
-                                            <dl class="visitor-rating">
-                                                <dt>Taste</dt>
-                                                <dd class="star-rating active" data-name="comfort"></dd>
-                                                <dt>Bang for your Buck</dt>
-                                                <dd class="star-rating active" data-name="location"></dd>
-                                                <dt>Facilities</dt>
-                                                <dd class="star-rating active" data-name="facilities"></dd>
-                                                <dt>Staff</dt>
-                                                <dd class="star-rating active" data-name="staff"></dd>
-                                                <dt>Location</dt>
-                                                <dd class="star-rating active" data-name="value"></dd>
-                                            </dl>
-                                        </div>
-                                        <!--end col-md-4-->
                                     </div>
                                     <!--end row-->
                                     <br>

@@ -9,7 +9,7 @@ var HomePage = {
       restaurantCoordinates: [],
       nameFilter: "",
       sortAttribute: "",
-      sortAscending: true,
+      sortAscending: false,
       randomRestaurant: {},
       randomMeal: "",
       map: null
@@ -189,7 +189,7 @@ var HomePage = {
     },
     setSortAttribute: function(inputSortAttribute) {
       this.sortAttribute = inputSortAttribute;
-      this.sortAscending = !this.sortAscending;
+      // this.sortAscending = !this.sortAscending;
       Vue.nextTick(function() {
         bgTransfer();
       });
@@ -197,15 +197,17 @@ var HomePage = {
   },
   computed: {
     filteredRestaurants: function() {
-      return this.restaurants.filter(
-        function(restaurant) {
-          var lowerRestaurantName = restaurant.name.toLowerCase();
-          var lowerNameFilter = this.nameFilter.toLowerCase();
-          var visible = lowerRestaurantName.includes(lowerNameFilter);
-          // restaurant.marker.setVisible(visible);
-          return visible;
-        }.bind(this)
-      );
+      return this.restaurants
+        .filter(
+          function(restaurant) {
+            var lowerRestaurantName = restaurant.name.toLowerCase();
+            var lowerNameFilter = this.nameFilter.toLowerCase();
+            var visible = lowerRestaurantName.includes(lowerNameFilter);
+            // restaurant.marker.setVisible(visible);
+            return visible;
+          }.bind(this)
+        )
+        .slice(0, 3);
     },
     sortedRestaurants: function() {
       return this.restaurants.sort(
@@ -235,6 +237,10 @@ var HomePage = {
           restaurant.marker.setVisible(visible);
         }.bind(this)
       );
+
+      Vue.nextTick(function() {
+        bgTransfer();
+      });
     }
   }
 };

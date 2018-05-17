@@ -25,6 +25,14 @@ user = User.new(
   admin: false 
   )
 user.save 
+
+user = User.new(
+  name: "Karen Liu",
+  email: "karen@email.com",
+  password: "password",
+  admin: false 
+  )
+user.save 
 #------------------------------------------
 #restaurant 1 
 restaurant = Restaurant.new(
@@ -62,7 +70,7 @@ restaurant = Restaurant.new(
   address: "177 N State St, Chicago, IL, 60601",
   logo:"https://upload.wikimedia.org/wikipedia/en/0/02/Chick-fil-A_Logo.svg",
   primary_image: "http://loopchicago.com/_files/images/chik_fil_a.jpg", 
-  speed_of_service: 7
+  speed_of_service: 4
   )
 restaurant.save 
 
@@ -92,7 +100,7 @@ restaurant = Restaurant.new(
   address: "169 W Ontario St, Chicago, IL 60654",
   logo:"https://peoplevine.blob.core.windows.net/files/521/business/6056/6056_logo.png",
   primary_image: "https://s3-media3.fl.yelpcdn.com/bphoto/1LBmPBBz1P3KbbRar-VHKw/o.jpg", 
-  speed_of_service: 9
+  speed_of_service: 12
   )
 restaurant.save
 
@@ -102,10 +110,39 @@ restaurant = Restaurant.new(
   address: "66 E Ohio St, Chicago, IL 60611",
   logo:"https://upload.wikimedia.org/wikipedia/en/thumb/7/73/Shake_Shack_Logo.svg/566px-Shake_Shack_Logo.svg.png",
   primary_image: "https://cdn.shakeshack.com/wp-content/uploads/2014/10/shake-shack-chicago.jpg", 
-  speed_of_service: 10
+  speed_of_service: 15
   )
 restaurant.save
 
+#restaurant 9
+restaurant = Restaurant.new(
+  name: "The Halal Guys", 
+  address: "172 N Wabash Ave, Chicago, IL 60601",
+  logo:"https://s3-media4.fl.yelpcdn.com/buphoto/L7sB16jSpyWVSKPB1MNX5Q/o.jpg",
+  primary_image: "https://s3-media3.fl.yelpcdn.com/bphoto/8pKP1E9YfOooCIKKobwacg/o.jpg", 
+  speed_of_service: 8
+  )
+restaurant.save
+
+#restaurant 10
+restaurant = Restaurant.new(
+  name: "sweetgreen", 
+  address: "623 N State St, Chicago, IL 60654",
+  logo:"https://upload.wikimedia.org/wikipedia/en/thumb/9/94/Sweetgreen_logo.png/220px-Sweetgreen_logo.png",
+  primary_image: "https://s3-media3.fl.yelpcdn.com/bphoto/TR2Al8KTaPgdffTqxuxCCg/o.jpg", 
+  speed_of_service: 9
+  )
+restaurant.save
+
+#restaurant 11
+restaurant = Restaurant.new(
+  name: "Jimmy John's", 
+  address: "501 N LaSalle Dr, Chicago, IL 60654",
+  logo:"https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/Jimmy_John%27s_Logo.png/220px-Jimmy_John%27s_Logo.png",
+  primary_image: "https://s3-media1.fl.yelpcdn.com/bphoto/x2apEcs_VWaluDZtgGds7w/o.jpg", 
+  speed_of_service: 2
+  )
+restaurant.save
 
 #----------------------------------------
 review = Review.new(
@@ -117,20 +154,85 @@ review = Review.new(
 review.save 
 
 review = Review.new(
+  value: 5, 
+  text: "Best Mcds I've ever been to!", 
+  user_id: 2, 
+  restaurant_id: 1, 
+  )
+review.save 
+
+review = Review.new(
   value: 4, 
-  text: "Good food. I like the Italian Beef.", 
+  text: "Good food! I like the Italian Beef.", 
   user_id: 1, 
   restaurant_id: 2, 
   )
 review.save 
 
 review = Review.new(
-  value: 3, 
+  value: 4, 
   text: "Decent sandwiches.", 
   user_id: 2, 
   restaurant_id: 3, 
   )
 review.save 
+
+review = Review.new(
+  value: 5, 
+  text: "What can I say about this place. Amazing brand in the fast food industry. The location is terrific. Don't let a long line dissuade you from getting food as the service is extremely fast. The food quality is always same (excellent). Food is always hot and served within minutes of ordering.", 
+  user_id: 1, 
+  restaurant_id: 4, 
+  )
+review.save 
+
+review = Review.new(
+  value: 5, 
+  text: "I decided to try the craze that all speak of.. I was blown away by the flavor n crispness of the spicy chicken sandwich. The waffle fries were crispy, with soft centers. It was a very busy time for them.. All were hospitable.", 
+  user_id: 2, 
+  restaurant_id: 4, 
+  )
+review.save 
+
+review = Review.new(
+  value: 5, 
+  text: "I never have complaints about this location. They are friendly, the orders come out quickly, and the location is clean. No complaints.", 
+  user_id: 3, 
+  restaurant_id: 4, 
+  )
+review.save 
+
+review = Review.new(
+  value: 5, 
+  text: "Great spot, the staff is very polite, they always go to your table and offer napkins, sauce and to take your trash, great customer service, above and beyond!", 
+  user_id: 4, 
+  restaurant_id: 4, 
+  )
+review.save 
+
+review = Review.new(
+  value: 5, 
+  text: "Very delicious food & big portions. Well seasoned & fresh halal meat & fresh veggies. I ordered a gyro with mixed beef & chicken, and I was well pleased. The customer service was excellent. It started raining and when I came in I was offered a clean towel to wipe the excess rain off myself!", 
+  user_id: 3, 
+  restaurant_id: 9, 
+  )
+review.save 
+
+review = Review.new(
+  value: 5, 
+  text: "Tastes pretty much the same as the original food cart in NYC, but just a tad more expensive. Don't count calories when trying their rice and white sauce coz it's worth all the calories.", 
+  user_id: 2, 
+  restaurant_id: 9, 
+  )
+review.save 
+
+review = Review.new(
+  value: 5, 
+  text: "A friend had raved about this place so we went. Didn't expect much from a place that serves gyros but was I wrong. The food is not your mall gyro and rice. This tastes a lot closer to authentic cuisine. My friend commented that it reminded him of his homeland. Will look for them in my travels now.", 
+  user_id: 1, 
+  restaurant_id: 9, 
+  )
+review.save 
+
 #---------------------------------------------------------------
 image = Image.new(
   name: "Mcdonalds fries", 
@@ -190,14 +292,14 @@ image.save
 
 image = Image.new(
   name: "Potbelly's 4", 
-  url: "https://s3-media4.fl.yelpcdn.com/bphoto/cvOBPkCORDp5DGIczSzXaw/o.jpg", 
+  url: "https://s3-media2.fl.yelpcdn.com/bphoto/0cmEjEcGAvohobJuwzQxoA/o.jpg", 
   restaurant_id: 3
   )
 image.save
 
 image = Image.new(
   name: "Chick-fil-A 2", 
-  url: "https://s3-media2.fl.yelpcdn.com/bphoto/eyHMChipsxD9mM8JD7J31g/o.jpg", 
+  url: "http://wrcb.images.worldnow.com/images/15883925_G.jpg", 
   restaurant_id: 4
   )
 image.save
@@ -212,6 +314,13 @@ image.save
 image = Image.new(
   name: "Chick-fil-A 4", 
   url: "https://s3-media1.fl.yelpcdn.com/bphoto/qJJde-TyvOsSYv9SkVZyFQ/o.jpg", 
+  restaurant_id: 4
+  )
+image.save
+
+image = Image.new(
+  name: "Chick-fil-A 5", 
+  url: "https://s3-media1.fl.yelpcdn.com/bphoto/US9mT3_38T_iSrdcGj-c6w/o.jpg", 
   restaurant_id: 4
   )
 image.save
@@ -282,23 +391,88 @@ image.save
 image = Image.new(
   name: "Shake Shack 2", 
   url: "https://s3-media3.fl.yelpcdn.com/bphoto/ajUapo20klEHHNgU0MdZaw/o.jpg", 
-  restaurant_id: 7
+  restaurant_id: 8
   )
 image.save
 
 image = Image.new(
   name: "Shake Shack 3", 
   url: "https://s3-media4.fl.yelpcdn.com/bphoto/2GwcFNabWg03O5cbUppMKw/o.jpg", 
-  restaurant_id: 7
+  restaurant_id: 8
   )
 image.save
 
 image = Image.new(
   name: "Shake Shack 4", 
   url: "https://s3-media4.fl.yelpcdn.com/bphoto/HvliiFcUr0RKFcnL7Ngcbw/o.jpg", 
-  restaurant_id: 7
+  restaurant_id: 8
   )
 image.save
+
+image = Image.new(
+  name: "Halal Guys 2", 
+  url: "https://s3-media1.fl.yelpcdn.com/bphoto/WP_HnWFAWSnw0kg-NYmhBg/o.jpg", 
+  restaurant_id: 9
+  )
+image.save
+
+image = Image.new(
+  name: "Halal Guys 3", 
+  url: "https://s3-media3.fl.yelpcdn.com/bphoto/jSonQ1bmRIB0tYMKubAQXQ/o.jpg", 
+  restaurant_id: 9
+  )
+image.save
+
+image = Image.new(
+  name: "Halal Guys 4", 
+  url: "https://s3-media1.fl.yelpcdn.com/bphoto/WMK73-8sjogTT4mV0hoX_w/o.jpg", 
+  restaurant_id: 9
+  )
+image.save
+
+image = Image.new(
+  name: "sweetgreen 2", 
+  url: "https://s3-media2.fl.yelpcdn.com/bphoto/thKYhwg6vTdEGXtC_IEXig/o.jpg", 
+  restaurant_id: 10
+  )
+image.save
+
+image = Image.new(
+  name: "sweetgreen 3", 
+  url: "https://s3-media3.fl.yelpcdn.com/bphoto/xfkEHTMgolcwfOGOCb-M_w/o.jpg", 
+  restaurant_id: 10
+  )
+image.save
+
+image = Image.new(
+  name: "sweetgreen 4", 
+  url: "https://s3-media1.fl.yelpcdn.com/bphoto/blJTGBC6asrYbLud_l6clQ/o.jpg", 
+  restaurant_id: 10
+  )
+image.save
+
+image = Image.new(
+  name: "Jimmy John's 2", 
+  url: "https://s3-media2.fl.yelpcdn.com/bphoto/55dv8uXsVzr1B0Ldjor7hg/o.jpg", 
+  restaurant_id: 11
+  )
+image.save
+
+image = Image.new(
+  name: "Jimmy John's 3", 
+  url: "https://s3-media2.fl.yelpcdn.com/bphoto/9sFfAgzV1AAHQ1e_zpv_MQ/o.jpg", 
+  restaurant_id: 11
+  )
+image.save
+
+image = Image.new(
+  name: "Jimmy John's 4", 
+  url: "https://menu-price.com/wp-content/uploads/2017/09/Jimmy-John%E2%80%99s-Menu-List-with-Price.jpg", 
+  restaurant_id: 11
+  )
+image.save
+
+
 #------------------------------------------------------------
 meal = Meal.new(
   description: "Big Mac, Fries, Soft Drink",
@@ -352,7 +526,7 @@ meal = Meal.new(
   description: "A Wreck, Chips, Soft Drink",
   restaurant_id: 3,
   upvotes: 0,
-  image: "https://s3.amazonaws.com/levelup-order-ahead-menus-production/4ae60b6cd992adbd85dc4076cef2cb8fdfb55cae.jpg?1500653826"
+  image: "https://newyork.seriouseats.com/images/2012/01/20120120-Potbelly-AWreckSandwich.jpg"
   )
 meal.save
 
@@ -360,7 +534,7 @@ meal = Meal.new(
   description: "Turkey Breast Sandwich, Chips, Soft Drink",
   restaurant_id: 3,
   upvotes: 0,
-  image: "https://s3.amazonaws.com/levelup-order-ahead-menus-production/0a204ee103e6a00584b157d313af48f82d4140e7.jpg"
+  image: "https://chicago.seriouseats.com/images/2012/08/20120824-219827-we-eat-all-the-sandwiches-at-potbelly-turkey.jpg"
   )
 meal.save
 
@@ -368,7 +542,7 @@ meal = Meal.new(
   description: "Grilled Chicken & Cheddar Sandwich, Chips, Soft Drink",
   restaurant_id: 3,
   upvotes: 0,
-  image: "https://s3.amazonaws.com/levelup-order-ahead-menus-production/f02c490e3ff532f9710eeb286d9e94c1a8aca303.jpg"
+  image: "http://1.bp.blogspot.com/-sjwXLnS4KxE/UXtYQL2vQXI/AAAAAAAAFMo/SCrWPiQWD44/s1600/IMG_7659-716039.JPG"
   )
 meal.save
 
@@ -376,7 +550,7 @@ meal = Meal.new(
   description: "Spicy Deluxe Sandwich, Fries, Soft Drink",
   restaurant_id: 4,
   upvotes: 0,
-  image: "https://d1fd34dzzl09j.cloudfront.net/Images/CFACOM/PDP/Menu%20Items%20Batch%201/Spicy-Deluxe-Sandwich/CFA_PDP_Spicy-Deluxe-Sandwich_1085.png"
+  image: "http://d1fd34dzzl09j.cloudfront.net/Images/CFACOM/Stories%20Images/2017/08/SpicyHacks/SpicyE.jpg"
   )
 meal.save
 
@@ -384,7 +558,7 @@ meal = Meal.new(
   description: "Chick-fil-A Chicken Biscuit, Hashbrowns, Coffee",
   restaurant_id: 4,
   upvotes: 0,
-  image: "https://www.chick-fil-a.com/-/media/Images/CFACOM/Menu-Items/WS-Menu-PDP-Images/Breakfast/CFA_PDP_Biscuit-Chicken_1085.ashx"
+  image: "https://s3-media4.fl.yelpcdn.com/bphoto/RfsLDOTYWkoilHRgOvqhMw/o.jpg"
   )
 meal.save
 
@@ -392,7 +566,7 @@ meal = Meal.new(
   description: "Chick-fil-A Chicken Sandwich, Fries, Soft Drink",
   restaurant_id: 4,
   upvotes: 0,
-  image: "https://www.cfacdn.com/img/order/COM/PDP_UPDATE/Images/Entrees/Edit%20NEW_Stack620_PDP_Chick-Fil-A-Sandwich_1085%20%281%29.png"
+  image: "https://media2.fdncms.com/boiseweekly/imager/the-original-chicken-sandwich-and-waffle-fries-meal/u/original/2748366/1350496444-combo-meal.png"
   )
 meal.save
 
@@ -429,10 +603,10 @@ meal = Meal.new(
 meal.save
 
 meal = Meal.new(
-  description: "Crunchwrap Supreme, Soft Drink",
+  description: "Chalupa Supreme, Soft Drink",
   restaurant_id: 6,
   upvotes: 0,
-  image: "https://www.tacobell.com/images/22362_crunchwrap_supreme_269x269.jpg"
+  image: "https://www.tacobell.com/images/22850_chalupa_supreme_269x269.jpg"
   )
 meal.save
 
@@ -475,3 +649,119 @@ meal = Meal.new(
   image: "https://fortunedotcom.files.wordpress.com/2016/09/514078498.jpg"
   )
 meal.save
+
+meal = Meal.new(
+  description: "ShroomBurger, Fries, Soft Drink",
+  restaurant_id: 8,
+  upvotes: 0,
+  image: "https://i0.wp.com/joydellavita.com/wp-content/uploads/2017/12/ShroomBurger_CheeseFries_ShakeShackHollywood_LosAngeles-1.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Shack-cago Dog, Fries, Soft Drink",
+  restaurant_id: 8,
+  upvotes: 0,
+  image: "https://s3-media1.fl.yelpcdn.com/bphoto/W0l1dnfUEpmqJmtTw8BOSw/o.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Chicken & Gyro Platter, Soft Drink",
+  restaurant_id: 9,
+  upvotes: 0,
+  image: "https://thehalalguys.com/wp-content/uploads/2015/08/menu-platters.png"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Chicken & Gyro Sandwich, Soft Drink",
+  restaurant_id: 9,
+  upvotes: 0,
+  image: "https://thehalalguys.com/wp-content/uploads/2015/08/menu-sandwiches.png"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Falafel Platter, Soft Drink", 
+  restaurant_id: 9,
+  upvotes: 0,
+  image: "https://cmgajcfoodandmore.files.wordpress.com/2017/01/020117firstlook_08.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Harvest Bowl, Iced Tea", 
+  restaurant_id: 10,
+  upvotes: 0,
+  image: "https://s3-media1.fl.yelpcdn.com/bphoto/ojckjh63fzIidy-e-4ruSg/o.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Shroomami, Iced Tea", 
+  restaurant_id: 10,
+  upvotes: 0,
+  image: "https://s3-media1.fl.yelpcdn.com/bphoto/pFVwhP7Pj5tHHZyliKxhJg/o.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Kale Caesar Salad, Iced Tea", 
+  restaurant_id: 10,
+  upvotes: 0,
+  image: "https://s3-media2.fl.yelpcdn.com/bphoto/-MvduxR3BNdpX3a90hojaQ/o.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Vito, Chips, Soft Drink", 
+  restaurant_id: 11,
+  upvotes: 0,
+  image: "https://www.jimmyjohns.com/images/menu/Items/05_vito.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Big John, Chips, Soft Drink", 
+  restaurant_id: 11,
+  upvotes: 0,
+  image: "https://www.jimmyjohns.com/images/menu/Items/02_bigjohn.jpg"
+  )
+meal.save
+
+meal = Meal.new(
+  description: "Turkey Tom, Chips, Soft Drink", 
+  restaurant_id: 11,
+  upvotes: 0,
+  image: "https://www.jimmyjohns.com/images/menu/Items/04_turkeytom(1).jpg"
+  )
+meal.save
+#---------------------------------------------------------------
+usermeal = UserMeal.new(
+  text: "So juicy and delish! I get this meal everytime I come here, aka everyday.", 
+  meal_id: 10,
+  user_id: 2 
+  )
+usermeal.save
+
+usermeal = UserMeal.new(
+  text: "I don't eat breakfast, but when I do, I do it for the biscuit.", 
+  meal_id: 11,
+  user_id: 3
+  )
+usermeal.save
+
+usermeal = UserMeal.new(
+  text: "The OG chicken sandwich. Yum Yum!", 
+  meal_id: 12,
+  user_id: 4
+  )
+usermeal.save
+
+usermeal = UserMeal.new(
+  text: "Tastes so good. I would eat it everyday if I could!", 
+  meal_id: 25,
+  user_id: 2
+  )
+usermeal.save

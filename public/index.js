@@ -375,11 +375,11 @@ var RestaurantsShowPage = {
     axios.get("v1/restaurants/" + this.$route.params.id).then(
       function(response) {
         this.restaurant = response.data;
-        // this.reviews = response.data.reviews; get reviews from database
+        this.reviews = response.data.reviews; //get reviews from database
         this.meals = response.data.meals;
 
         Vue.nextTick(function() {
-          // bgTransfer();
+          bgTransfer();
         });
       }.bind(this)
     );
@@ -387,7 +387,7 @@ var RestaurantsShowPage = {
     axios.get("v1/googlerestaurants/" + this.$route.params.id).then(
       function(response) {
         this.googleInfo = response.data.main;
-        this.reviews = response.data.main.reviews;
+        //this.reviews = response.data.main.reviews; //get reviews from google
 
         Vue.nextTick(function() {
           bgTransfer();

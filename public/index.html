@@ -370,7 +370,7 @@
                 <div class="col-md-7 col-sm-7" style="background-color: white !important">
                     <div id="gallery-nav"></div>
                     <section>
-                        <h2>About this Restaurant</h2>
+                        <h2>About this Restaurant:</h2>
                         <p>
                             {{ wikiInfo.extract }}
                         </p>
@@ -388,7 +388,7 @@
                         </ul>
                     </section>
                     <section>
-                        <h2>Reviews</h2>
+                        <h2>Reviews:</h2>
                         <div class="review" v-for="review in reviews">
                             <div class="image">
                                 <div class="bg-transfer" style="z-index: 1"><img v-bind:src="review.profile_photo_url" alt=""></div>
@@ -407,7 +407,7 @@
                         <!--end review-->
                     </section>
                     <section>
-                        <h2>Top Meals</h2>
+                        <h2>Top Meals:</h2>
                         <div v-for="meal in topMeals">
                             <h3>{{ meal.description + " (upvotes:" + meal.upvotes + ")"}}</h3>
                             <button class="btn btn-primary" v-on:click="upvote(meal)">Upvote</button>
